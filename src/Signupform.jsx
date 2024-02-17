@@ -31,7 +31,7 @@ function Signupform() {
     }
 
     alert(val.msg);
-    
+    navigate("/dashboard");
   };
   return (
     <>
