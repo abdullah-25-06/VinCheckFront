@@ -1,8 +1,7 @@
-import React, {  useRef } from "react";
+import React, { useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 function Form() {
-
   const inp = useRef();
   const navigate = useNavigate();
   const clickHandler = async () => {
@@ -25,8 +24,8 @@ function Form() {
 
   return (
     <>
-      <div className="col-md-6 col-sm-6 mx-auto col2">
-        <div className="col-md-11 col-sm-11 mx-auto wform">
+      <div className="col-xxl-6 col-xl-5 col-lg-6 col-md-7 col-sm-8 mx-auto col2">
+        <div className="col-md-11 col-sm-11 mx-auto wform pb-4">
           <h3 className="text-center">Full Vehicle History Report</h3>
           <h5 className="text-center">Find any vehicle by VIN</h5>
           <input
@@ -36,7 +35,7 @@ function Form() {
             placeholder="Enter VIN to Search"
             ref={inp}
           />
-          <p className="text-center pt-2 wformp">Example: 1VXBR12EXCP901213</p>
+          <p className='text-center pt-2 wformp'>Example: 1VXBR12EXCP901213</p>
           <h5 className="text-center captcha">Solve Captcha</h5>
           <div className="col-md-11 mx-auto inputgroup">
             <div className="captcha">

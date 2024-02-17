@@ -5,7 +5,7 @@ import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 
 export default function Table() {
     return (
-        <MDBTable>
+        <MDBTable >
             <MDBTableHead>
                 <tr className='table-info'>
                     <th scope='col' className='thead' >Report Contents</th>

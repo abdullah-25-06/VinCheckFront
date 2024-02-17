@@ -12,8 +12,8 @@ function Footer() {
         <>
             {/* <!-- Footer --> */}
             <footer className="footer text-center text-lg-start  text-muted" >
-                <section className="links pt-3" data-aos="fade-right">
-                    <div className="container text-center text-md-start mt-5">
+                <section className="links pt-3" data-aos='fade-right'>
+                    <div className="container  text-md-start mt-5">
                         {/* <!-- Grid row --> */}
                         <div className="row mt-3">
                             {/* <!-- Grid column --> */}

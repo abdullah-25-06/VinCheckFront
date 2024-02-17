@@ -17,24 +17,17 @@ function Sidebar() {
 
   return (
     <>
-      <div className="col-md-2 dcol1">
-        <nav class="sidebar">
-          <div class="sidebar-inner">
-            <header class="sidebar-header">
-              <button
-                type="button"
-                class="sidebar-burger"
-                onClick={toggleSidebar}
-                id="sbutton"
-              ></button>
-              {/* <img src="./assets/blocklord-logo.png" class="sidebar-logo" /> */}
-            </header>
+      <div className="dcol1 col-xxl-2 col-xl-2 col-1g-2 col-md-2 ">
+        <nav class="sidebar " id="side">
+          <div className="sidebar-inner">
+            <header class="sidebar-header"></header>
+
             <nav class="sidebar-menu">
               <span style={{ fontSize: "19px" }} id="cname">
                 {ctx.username}
               </span>
               <hr />
-              {/* </button> */}
+
               <p
                 style={{ fontSize: "15px", paddingTop: "", marginLeft: "10px" }}
               >
@@ -60,7 +53,6 @@ function Sidebar() {
                 <NavLink className="nav-link" to="/Chat">
                   <span id="spam">Live Chat</span>
                 </NavLink>
-                {/* <span>Live Chat</span> */}
               </button>
 
               <p style={{ fontSize: "15px", padding: "0", marginLeft: "10px" }}>
@@ -74,7 +66,10 @@ function Sidebar() {
               </button>
               <button type="button" id="sbutton" onClick={signOutHandler}>
                 <img src="signout.png" />
-                Sign Out
+
+                <NavLink className="nav-link" to="/">
+                  <span id="spam">Sign Out</span>
+                </NavLink>
               </button>
             </nav>
           </div>
@@ -85,3 +80,4 @@ function Sidebar() {
 }
 
 export default Sidebar;
+

@@ -13,8 +13,42 @@ export const AuthContextProvider = (props) => {
   const [Mcount, setCount] = useState(0);
   const updateCount = (count) => {
     setCount(count);
-    console.log(count);
     localStorage.setItem("count", count);
+  };
+  const SignUpHandler = async (email, password, phoneno, username) => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8000/register/",
+        {
+          email,
+          password,
+          phoneno,
+          username,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (data.isAdmin) localStorage.setItem("admin", data.isAdmin);
+      setIsLoggedIn(true);
+      setUsername(data.username);
+      setCount(data.count);
+      localStorage.setItem("token", data.access_token);
+      localStorage.setItem("IsloggedIn", "1");
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("count", data.count);
+      return {
+        status: 200,
+        msg: "Successfully signed up",
+      };
+    } catch (err) {
+      return {
+        status: 404,
+        msg: err.response.data.msg,
+      };
+    }
   };
   const loginHandler = async (email, password) => {
     try {
@@ -96,6 +130,7 @@ export const AuthContextProvider = (props) => {
         username: username,
         onLogout: logoutHandler,
         onLogin: loginHandler,
+        onSignUp: SignUpHandler,
         count: Mcount,
         updateCount: updateCount,
       }}

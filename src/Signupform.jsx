@@ -1,35 +1,37 @@
 import React, { useRef, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import {
-  MDBInput,
-  MDBCol,
-  MDBRow,
-  MDBCheckbox,
-  MDBBtn,
-} from "mdb-react-ui-kit";
+import { MDBInput, MDBCol, MDBRow, MDBCheckbox } from "mdb-react-ui-kit";
 import AuthContext from "./context/auth";
-
-function Loginform() {
+function Signupform() {
   const ctx = useContext(AuthContext);
   const email = useRef();
+  const name = useRef();
+  const phone = useRef();
   const password = useRef();
   const navigate = useNavigate();
 
   const FormHandle = async (e) => {
     e.preventDefault();
     const email_val = email.current.value;
+    const name_val = name.current.value;
+    const phone_val = phone.current.value;
     const password_val = password.current.value;
-    if (!email_val || !password_val) {
-      return alert("Enter both Email and Password");
+    if (!email_val || !password_val || !name_val || !phone_val) {
+      return alert("All fields are required");
     }
-    const val = await ctx.onLogin(email_val, password_val);
+    const val = await ctx.onSignUp(
+      email_val,
+      password_val,
+      phone_val,
+      name_val
+    );
 
     if (val.status === 404) {
       return alert(val.msg);
     }
 
     alert(val.msg);
-    navigate("/Dashboard");
+    
   };
   return (
     <>
@@ -40,26 +42,38 @@ function Loginform() {
               <p>Vincheck Central</p>
             </NavLink>
           </div>
-          <NavLink className="nav-link" to="/Signupform">
+          <NavLink className="nav-link" to="/Login">
             <div className="log">
-              <p style={{ color: "white" }}>Sign up</p>
-
-              {/* <NavLink className="nav-link" to='/'><p></p></NavLink> */}
+              <p style={{ color: "white" }}>Login</p>
             </div>
           </NavLink>
         </div>
         <div className="nborder"></div>
 
         <div className="logform">
-          <div className="formbox">
+          <div className="formbox ">
             <form onSubmit={FormHandle}>
-              <h1 className="pb-3">Login Form</h1>
+              <h3 className="pb-1">Signup Form</h3>
+              <p>Name</p>
+              <MDBInput
+                className="mb-3"
+                type="text"
+                id="form1Example2"
+                ref={name}
+              />
               <p>Email Adress</p>
               <MDBInput
                 className="mb-3"
                 type="email"
-                id="form1Example1"
+                id="form1Example2"
                 ref={email}
+              />
+              <p>Phone no</p>
+              <MDBInput
+                className="mb-3"
+                type="text"
+                id="form1Example2"
+                ref={phone}
               />
               <p>Password</p>
               <MDBInput
@@ -81,7 +95,7 @@ function Loginform() {
                   data-mdb-ripple-init
                   id="loginbtn"
                 >
-                  Sign in
+                  Sign Up
                 </button>
               </div>
             </form>
@@ -92,4 +106,4 @@ function Loginform() {
   );
 }
 
-export default Loginform;
+export default Signupform;

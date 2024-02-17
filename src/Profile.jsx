@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import axios from "axios";
-
+import Canvas from "./Canvas";
 function Loginform() {
   const phone = useRef();
   const name = useRef();
@@ -10,7 +10,7 @@ function Loginform() {
   const new_password = useRef();
   const navigate = useNavigate();
 
-  const formHandler = async (e) => {
+  const btnHandler = async (e) => {
     const phone_val = phone.current.value;
     const name_val = name.current.value;
     const oldP_val = old_password.current.value;
@@ -39,7 +39,6 @@ function Loginform() {
       alert("Your Information has been updated successfully ");
       navigate("/Dashboard");
     } catch (err) {
-      console.log(err.response.data.message);
       alert(err.response.data.message);
     }
   };
@@ -53,22 +52,35 @@ function Loginform() {
                 <p>Vincheck Central</p>
               </NavLink>
             </div>
+            <a
+              class="btn btn-primary mb-2"
+              id="cbtn"
+              data-bs-toggle="offcanvas"
+              href="#offcanvasExample"
+              role="button"
+              aria-controls="offcanvasExample"
+            >
+              <img src="ham.png" alt="" sizes="" srcset="" />
+            </a>
           </div>
           <div className="nborder"></div>
         </div>
         <div className="dbody">
           <Sidebar />
           <div className="reqform">
-            <h1>Account Information</h1>
-            <div className="col-md-8 mx-auto mainre2 mt-4">
+            <h1 style={{ color: "white" }}>Account Information</h1>
+            <div className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-9 mx-auto mainre2 mt-4">
               <div className="reqbox ">
-                <div class="row mb-4 mt-4">
-                  <form onSubmit={formHandler} >
+                <div class="row ">
+                  <div
+                    className="pt-2 pb-1"
+                    style={{ display: "flex", justifyContent: "center" }}
+                  >
                     <div class="col">
                       <div data-mdb-input-init class="form-outline">
                         <label
                           class="form-label"
-                          htmlfor="form3Example1"
+                          for="form3Example1"
                           id="reqlabel"
                         >
                           Name
@@ -86,81 +98,80 @@ function Loginform() {
                       <div data-mdb-input-init class="form-outline">
                         <label
                           class="form-label"
-                          htmlfor="form3Example2"
+                          for="form3Example1"
                           id="reqlabel"
                         >
                           Phone
                         </label>
                         <input
                           type="text"
-                          id="form3Example1"
+                          id="form3Example"
                           class="form-control"
                           placeholder="Enter your Phone Number"
                           ref={phone}
                         />
                       </div>
                     </div>
-                    <div className="row pt-3">
-                      <div class="col">
-                        <div data-mdb-input-init class="form-outline">
-                          <label
-                            class="form-label"
-                            htmlfor="form3Example1"
-                            id="reqlabel"
-                          >
-                            {" "}
-                            Current Password
-                          </label>
-                          <input
-                            type="password"
-                            id="form3Example1"
-                            class="form-control"
-                            placeholder="Enter current password"
-                            ref={old_password}
-                          />
-                        </div>
+                  </div>
+                  <div
+                    className="pt-3"
+                    style={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <div class="col">
+                      <div data-mdb-input-init class="form-outline">
+                        <label
+                          class="form-label"
+                          for="form3Example1"
+                          id="reqlabel"
+                        >
+                          {" "}
+                          Current Password
+                        </label>
+                        <input
+                          type="text"
+                          id="form3Example1"
+                          class="form-control"
+                          placeholder="Current password"
+                          ref={old_password}
+                        />
                       </div>
-                      <div class="col">
-                        <div data-mdb-input-init class="form-outline">
-                          <label
-                            class="form-label"
-                            htmlfor="form3Example2"
-                            id="reqlabel"
-                          >
-                            New Password
-                          </label>
-                          <input
-                            type="password"
-                            id="form3Example1"
-                            class="form-control"
-                            placeholder="Enter new passowrd"
-                            ref={new_password}
-                          />
-                        </div>
-                      </div>
-                      {/* <div className="reqbtn">
-                      <button
-                        class="btn btn-success mt-4"
-                        style={{ fontSize: "13px", width: "5rem" }}
-                      type="submit" >
-                        Save
-                      </button>
-                    </div> */}
                     </div>
+                    <div class="col">
+                      <div data-mdb-input-init class="form-outline">
+                        <label
+                          class="form-label"
+                          for="form3Example1"
+                          id="reqlabel"
+                        >
+                          {" "}
+                          New Password
+                        </label>
+                        <input
+                          type="text"
+                          id="form3Example"
+                          class="form-control"
+                          placeholder="New password"
+                          ref={new_password}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="reqbtn">
                     <button
-                      //   className="btn btn-success mt-4"
+                      class="btn btn-success mt-4"
                       style={{ fontSize: "13px", width: "5rem" }}
-                      type="submit"
+                      onClick={btnHandler}
                     >
-                      Submit
+                      Save
                     </button>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <Canvas />
     </>
   );
 }

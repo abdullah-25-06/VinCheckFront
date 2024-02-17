@@ -5,6 +5,7 @@ import AuthContext from "./context/auth";
 import DataContext from "./context/data";
 import axios from "axios";
 import moment from "moment";
+import Canvas from "./Canvas";
 import { ColorRing } from "react-loader-spinner";
 function Dpage1(props) {
   const ctx = useContext(AuthContext);
@@ -36,15 +37,23 @@ function Dpage1(props) {
         });
 
         setDataArray(getreports);
-        if (getreports.length > 0) {
+        if (getreports && getreports.length > 0) {
           setIsData(true);
         } else {
           setIsData(false);
         }
         setIsLoading(false);
       } catch (error) {
+        console.log(error);
         if (error.response.status === 401) {
-          ctx.onLogout();
+          localStorage.removeItem("IsloggedIn");
+          localStorage.removeItem("token");
+          localStorage.removeItem("username");
+          localStorage.removeItem("count");
+          localStorage.removeItem("admin", data.isAdmin);
+          ctx.isLoggedIn = false;
+          ctx.username = "";
+          ctx.count = 0;
           navigate("/");
         }
       }
@@ -71,13 +80,21 @@ function Dpage1(props) {
               <td colSpan="1" id="colborder">
                 {elem.vin}
               </td>
-              <td colSpan="1" id="colborder">
+              <td
+                colSpan="1"
+                id="colborder"
+                style={{ whiteSpace: "wrap", wordBreak: "break-all" }}
+              >
                 {elem.email}
               </td>
               <td colSpan="1" id="colborder">
                 {elem.pending ? "pending" : "delivered"}
               </td>
-              <td colSpan="1" id="colborder">
+              <td
+                colSpan="1"
+                id="colborder"
+                style={{ whiteSpace: "wrap", wordBreak: "break-all" }}
+              >
                 {moment(elem.createdAt).format("DD MMMM YYYY, HH:mm:ss")}
               </td>
               {localStorage.getItem("admin") ? (
@@ -153,123 +170,141 @@ function Dpage1(props) {
         currency: selectPackage.currency,
         price: selectPackage.price,
         title: selectPackage.title,
+        report: selectPackage.count,
       }).toString(),
     });
   };
   return (
-    <div className="dashboard">
-      <div className="head">
-        <div className="navhead">
-          <div className="title">
-            <NavLink className="nav-link" to="/">
-              <p>Vincheck Central</p>
-            </NavLink>
-          </div>
-        </div>
-        <div className="nborder"></div>
-      </div>
-      <div className="dbody">
-        <Sidebar />
-        <div className="col-md-4 dcol2">
-          <div className="dform1">
-            <p>
-              <b>Remaining Count:{ctx.count}</b>
-            </p>
-            <div data-mdb-input-init class="form-outline mb-4">
-              <label class="form-label" for="form5Example1">
-                VIN Number*
-              </label>
-              <input
-                type="text"
-                id="form5Example1"
-                class="form-control"
-                placeholder="Enter VIN Number"
-                ref={inp}
-              />
+    <>
+      <div className="dashboard">
+        <div className="head">
+          <div className="navhead">
+            <div className="title mt-1">
+              <NavLink className="nav-link" to="/">
+                <p>Vincheck Central</p>
+              </NavLink>
             </div>
-            <p>
-              You have {ctx.count} remaining credits to view report. Select any
-              package below to proceed.
-            </p>
-            <select
-              class="form-control"
-              name="package"
-              onChange={selectHandler}
-              required
+            <a
+              class="btn btn-primary mb-2"
+              id="cbtn"
+              data-bs-toggle="offcanvas"
+              href="#offcanvasExample"
+              role="button"
+              aria-controls="offcanvasExample"
             >
-              {data}
-            </select>
-            <button
-              class="btn btn-success mt-2"
-              style={{ fontSize: "13px" }}
-              onClick={btnHandler}
-            >
-              Check Vehicle Details
-            </button>
-            <button
-              class="btn btn-success mt-2 "
-              style={{ fontSize: "13px" }}
-              onClick={payHandler}
-            >
-              Payment
-            </button>
-            <div key={selectPackage}></div>
+              <img src="ham.png" alt="" sizes="" srcset="" />
+            </a>
           </div>
+          <div className="nborder"></div>
         </div>
-        <div className="col-md-6 dcol3">
-          <div class="card">
-            <div class="header">
-              <h2>All Reports</h2>
-            </div>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">VIN </th>
-                  <th scope="col">Email </th>
-                  <th scope="col">Report Status</th>
-                  <th scope="col">Date & Time</th>
-                  {localStorage.getItem("admin") ? (
-                    <th scope="col">Action</th>
-                  ) : (
-                    <th scope="col">View Report</th>
-                  )}
-                </tr>
-              </thead>
-              {isData && <tbody>{row}</tbody>}
-            </table>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              {!isLoading && !isData && (
-                <h2 style={{ textAlign: "center" }}>No Request For Reports </h2>
-              )}
-              {isLoading && (
-                <ColorRing
-                  visible={true}
-                  height="80"
-                  width="80"
-                  ariaLabel="color-ring-loading"
-                  wrapperStyle={{}}
-                  wrapperClass="color-ring-wrapper"
-                  colors={[
-                    "#e15b64",
-                    "#f47e60",
-                    "#f8b26a",
-                    "#abbd81",
-                    "#849b87",
-                  ]}
+        <div className="dbody">
+          <Sidebar />
+          <div className="col-xxl-4 col-xl-4 col-lg-3 col-md-12 mx-auto dcol2">
+            <div className="dform1">
+              <p>
+                <b>Remaining Count:{ctx.count}</b>
+              </p>
+
+              <div data-mdb-input-init class="form-outline mb-4">
+                <label class="form-label" for="form5Example1" id="ft">
+                  VIN Number*
+                </label>
+                <input
+                  type="text"
+                  id="form5Example1"
+                  class="form-control"
+                  placeholder="Enter VIN Number"
+                  ref={inp}
                 />
-              )}
+              </div>
+              <p id="ftext">
+                You have {ctx.count} remaining credits to view report. Select
+                any package below to proceed.
+              </p>
+              <select
+                class="form-control"
+                name="package"
+                onChange={selectHandler}
+                required
+              >
+                {data}
+              </select>
+              <button
+                onClick={btnHandler}
+                class="btn btn-success mt-2"
+                style={{ border: "none" }}
+              >
+                Check Vehicle Details
+              </button>
+              <button
+                class="btn btn-success mt-2"
+                style={{ marginLeft: "3px", border: "none" }}
+                onClick={payHandler}
+              >
+                Payment
+              </button>
+            </div>
+          </div>
+          <div className="col-xxl-6 col-xl-6  col-lg-7 col-md-12 dcol3">
+            <div class="card">
+              <div class="header">
+                <h2>All Reports</h2>
+              </div>
+              <div className="tablecontainer">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">VIN </th>
+                      <th scope="col">Email </th>
+                      <th scope="col">Report Status</th>
+                      <th scope="col">Date & Time</th>
+                      {localStorage.getItem("admin") ? (
+                        <th scope="col">Action</th>
+                      ) : (
+                        <th scope="col">View Report</th>
+                      )}
+                    </tr>
+                  </thead>
+                  {isData && <tbody>{row}</tbody>}
+                </table>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {!isLoading && !isData && (
+                    <h2 style={{ textAlign: "center" }}>
+                      No Request For Reports{" "}
+                    </h2>
+                  )}
+                  {isLoading && (
+                    <ColorRing
+                      visible={true}
+                      height="80"
+                      width="80"
+                      ariaLabel="color-ring-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="color-ring-wrapper"
+                      colors={[
+                        "#e15b64",
+                        "#f47e60",
+                        "#f8b26a",
+                        "#abbd81",
+                        "#849b87",
+                      ]}
+                    />
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <Canvas />
+    </>
   );
 }
 
