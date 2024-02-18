@@ -50,7 +50,6 @@ function Dpage1(props) {
           localStorage.removeItem("token");
           localStorage.removeItem("username");
           localStorage.removeItem("count");
-          localStorage.removeItem("admin", data.isAdmin);
           ctx.isLoggedIn = false;
           ctx.username = "";
           ctx.count = 0;
