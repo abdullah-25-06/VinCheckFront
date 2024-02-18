@@ -11,7 +11,7 @@ import { BrowserRouter } from "react-router-dom";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 // import Slider from './Slider'
 // import Sli
-import Slides from "./Slides";
+// import Slides from "./Slides";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
