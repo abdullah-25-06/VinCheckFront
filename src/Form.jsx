@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 function Form() {
   const inp = useRef();
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ function Form() {
 
     if (!val) return alert("Enter a valid Vin");
     try {
-      const data = await axios.get(`http://localhost:8000/vindata?vin=${val}`, {
+      const data = await axios.get(`https://vincheck-production.up.railway.app/vindata?vin=${val}`, {
         headers: { "Content-Type": "application/json" },
       });
       localStorage.setItem("car_D", JSON.stringify(data.data));

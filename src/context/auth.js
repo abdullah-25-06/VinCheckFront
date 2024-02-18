@@ -18,7 +18,7 @@ export const AuthContextProvider = (props) => {
   const SignUpHandler = async (email, password, phoneno, username) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/register/",
+        "https://vincheck-production.up.railway.app/register/",
         {
           email,
           password,
@@ -53,7 +53,8 @@ export const AuthContextProvider = (props) => {
   const loginHandler = async (email, password) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/login/",
+        "https://vincheck-production.up.railway.app/login/",
+        // "http://localhost:8000/login/",
         {
           email,
           password,
@@ -77,6 +78,7 @@ export const AuthContextProvider = (props) => {
         msg: "Successfully logged in",
       };
     } catch (err) {
+      console.log(err)
       return {
         status: 404,
         msg: err.response.data.error,
@@ -99,7 +101,7 @@ export const AuthContextProvider = (props) => {
   const logoutHandler = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/logout/",
+        "https://vincheck-production.up.railway.app/logout/",
         {},
         {
           headers: {

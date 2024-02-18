@@ -21,7 +21,7 @@ function Loginform() {
     }
     try {
       await axios.put(
-        "http://localhost:8000/profile/",
+        "https://vincheck-production.up.railway.app/profile/",
         {
           username: name_val,
           password: newP_val,

@@ -27,7 +27,8 @@ function Dpage1(props) {
       try {
         const {
           data: { getreports },
-        } = await axios.get("http://localhost:8000/report", {
+        } = await axios.get("https://vincheck-production.up.railway.app/report", {
+        // } = await axios.get("http://localhost:8000/report", {
           headers: {
             "Content-Type": "application/json",
             auth_token: localStorage.getItem("token")
@@ -128,7 +129,7 @@ function Dpage1(props) {
     const val = inp.current.value;
     if (!val) return alert("Enter a valid Vin");
     try {
-      const data = await axios.get(`http://localhost:8000/vindata?vin=${val}`, {
+      const data = await axios.get(`https://vincheck-production.up.railway.app/vindata?vin=${val}`, {
         headers: { "Content-Type": "application/json" },
       });
       localStorage.setItem("car_D", JSON.stringify(data.data));
@@ -143,7 +144,7 @@ function Dpage1(props) {
     try {
       const dataSample = dataArray[index];
       await axios.put(
-        `http://localhost:8000/vindata${dataSample._id}`,
+        `https://vincheck-production.up.railway.app/vindata${dataSample._id}`,
         {},
         {
           headers: {

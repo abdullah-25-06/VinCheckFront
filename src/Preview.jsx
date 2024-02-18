@@ -15,7 +15,7 @@ function Preview() {
   const btnHandler = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/detail",
+        "https://vincheck-production.up.railway.app/detail",
         {
           vin: car.vin,
         },
