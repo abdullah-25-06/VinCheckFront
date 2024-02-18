@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Aos from "aos";
 
 import { NavLink } from "react-router-dom";
@@ -91,7 +90,7 @@ function Navbar() {
         <div class="offcanvas-body">
           <div className="content">
             <ul id="ul">
-              <a className="nav-link" to="/">
+              <a className="nav-link" href="/">
                 <li id="li">
                   <img src="house.png" alt="" /> Home
                 </li>

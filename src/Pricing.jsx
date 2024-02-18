@@ -46,7 +46,7 @@ function Pricing() {
                   <p>Accident Information</p>
                 </div>
                 <a
-                  href="#"
+                  href="/#"
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
@@ -83,7 +83,7 @@ function Pricing() {
                   <p>Accident Information</p>
                 </div>
 
-                <a href="#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
+                <a href="/#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
                   Sign Up
                 </a>
               </div>
@@ -118,7 +118,7 @@ function Pricing() {
                   <p>Accident Information</p>
                 </div>
 
-                <a href="#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
+                <a href="/#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
                   Sign Up
                 </a>
 
@@ -164,7 +164,7 @@ function Pricing() {
                   <p>Junk & Salvage Information</p>
                   <p>Accident Information</p>
                 </div>
-                <a href="#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
+                <a href="/#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
                   Sign Up
                 </a>
 
@@ -197,7 +197,7 @@ function Pricing() {
                   <p>Accident Information</p>
                 </div>
 
-                <a href="#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
+                <a href="/#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
                   Sign Up
                 </a>
               </div>
@@ -232,7 +232,7 @@ function Pricing() {
                   <p>Accident Information</p>
                 </div>
 
-                <a href="#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
+                <a href="/#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
                   Sign Up
                 </a>
 

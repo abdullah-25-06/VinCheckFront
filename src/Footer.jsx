@@ -137,7 +137,7 @@ function Footer() {
         </section>
         <div className="footend text-center p-4">
           © 2023 Copyright:
-          <a className="text-reset fw-bold" id="textdec">
+          <a className="text-reset fw-bold" id="textdec" href="/#">
             VINCHECK CENTRAL.COM
           </a>
         </div>
