@@ -20,7 +20,7 @@ function Loginform() {
       return alert("Please fillout whole form");
     }
     try {
-      const { data } = await axios.put(
+      await axios.put(
         "http://localhost:8000/profile/",
         {
           username: name_val,
