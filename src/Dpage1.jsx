@@ -61,7 +61,7 @@ function Dpage1(props) {
 
     api();
     return () => {};
-  }, [d_ctx]);
+  }, [d_ctx, ctx, navigate]);
   const data = d_ctx?.data.map((data, index) => {
     return (
       <option value={index} key={index}>

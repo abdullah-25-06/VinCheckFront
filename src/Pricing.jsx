@@ -1,18 +1,8 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 import DataContext from "./context/data";
 
 function Pricing() {
-  // {ctx.data.length > 0 ? ctx.data[0].title : ""}
-  //               </p>
-  //               <div class="d-flex align-items-center justify-content-center text-dark mb-3">
-  //                 <span class=""></span>
-  //                 <h1
-  //                   class="price annually animate__bounceIn"
-  //                   id="bprice"
-  //                   style={{ color: "white" }}
-  //                 >
-  //                   {ctx.data.length > 0 ? ctx.data[0].price : ""}
+
   const ctx = useContext(DataContext);
   return (
     <>

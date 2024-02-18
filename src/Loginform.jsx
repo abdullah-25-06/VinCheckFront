@@ -5,7 +5,6 @@ import {
   MDBCol,
   MDBRow,
   MDBCheckbox,
-  MDBBtn,
 } from "mdb-react-ui-kit";
 import AuthContext from "./context/auth";
 

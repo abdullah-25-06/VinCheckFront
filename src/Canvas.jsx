@@ -36,7 +36,7 @@ function Canvas() {
                   Main
                 </p>
                 <button type="button" id="sbutton">
-                  <img src="home.png" alt="" />
+                  <img src="home.png" alt="pic" />
                   <NavLink className="nav-link" to="/Dashboard">
                     <span id="spam">Dashboard</span>
                   </NavLink>
@@ -47,13 +47,13 @@ function Canvas() {
                   Get Help
                 </p>
                 <button type="button" id="sbutton">
-                  <img src="efund.png" />
+                  <img src="efund.png" alt="pic" />
                   <NavLink className="nav-link" to="/Request">
                     <span id="spam">Request Refund</span>
                   </NavLink>
                 </button>
                 <button type="button" id="sbutton">
-                  <img src="chat.png" />
+                  <img src="chat.png" alt="pic" />
                   <NavLink className="nav-link" to="/Chat">
                     <span id="spam">Live Chat</span>
                   </NavLink>
@@ -66,13 +66,13 @@ function Canvas() {
                   Authentication
                 </p>
                 <button type="button" id="sbutton">
-                  <img src="use.png" />
+                  <img src="use.png" alt="pic" />
                   <NavLink className="nav-link" to="/Profile">
                     <span id="spam">Profile</span>
                   </NavLink>
                 </button>
                 <button type="button" id="sbutton">
-                  <img src="signout.png" />
+                  <img src="signout.png" alt="pic" />
 
                   <NavLink className="nav-link" to="/Profile">
                     <span id="spam">Sign Out</span>

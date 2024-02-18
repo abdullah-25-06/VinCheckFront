@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Loginform from "./Loginform";
 import { useNavigate } from "react-router-dom";
 import Aos from "aos";
 
@@ -9,10 +8,6 @@ function Navbar() {
   useEffect(() => {
     Aos.init();
   }, []);
-  const navigate = useNavigate();
-  const prices = () => {
-    navigate("/Login");
-  };
   return (
     <>
       {/* Lap navbar */}
