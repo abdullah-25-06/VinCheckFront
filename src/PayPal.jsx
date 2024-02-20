@@ -19,7 +19,8 @@ function Paypal(props) {
   const report = queryParameters.get("report");
 
   const createOrder = (data) => {
-    return fetch("https://vincheck-production.up.railway.app/api/orders", {
+    // return fetch("https://vincheck-production.up.railway.app/api/orders", {
+    return fetch("http://localhost:8000/api/orders", {
       method: "POST",
       headers: {
         auth_token: localStorage.getItem("token")
@@ -36,7 +37,8 @@ function Paypal(props) {
   };
   const onApprove = async (data) => {
     const response = await fetch(
-      "https://vincheck-production.up.railway.app/api/capture-paypal-order",
+      // "https://vincheck-production.up.railway.app/api/capture-paypal-order",
+      "http://localhost:8000/api/capture-paypal-order",
       {
         method: "POST",
         headers: {

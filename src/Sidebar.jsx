@@ -1,7 +1,7 @@
 import { React, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "./context/auth";
-import { ToastContainer, toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 
 function Sidebar() {
@@ -10,8 +10,6 @@ function Sidebar() {
   const signOutHandler = async () => {
     const val = await ctx.onLogout();
     if (val.status === 403) return alert(val.msg);
-    const notify = () => toast("Logout sucessfully");
-    alert(notify);
     navigate("/");
   };
   return (
