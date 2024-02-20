@@ -11,6 +11,12 @@ function Signupform() {
   const navigate = useNavigate();
 
   const FormHandle = async (e) => {
+    if (counter < 0) {
+      counter++;
+    }
+    else {
+      document.getElementById("loginbtn").disabled = true;
+    }
     e.preventDefault();
     const email_val = email.current.value;
     const name_val = name.current.value;
@@ -33,6 +39,7 @@ function Signupform() {
     alert(val.msg);
     navigate("/dashboard");
   };
+  var counter=0;
   return (
     <>
       <div className=" login">
