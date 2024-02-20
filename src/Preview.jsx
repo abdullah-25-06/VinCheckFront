@@ -6,36 +6,37 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 function Preview() {
   // For text animated redring library
-  const el = React.useRef(null);
-  React.useEffect(() => {
-    // const typed = new Typed(el.current, {
-    new Typed(el.current, {
-      strings: ["To view the complete report, click here."],
-      startDelay: 100,
-      typeSpeed: 25,
-      // backDelay: 40,
-      loop: false,
-      // backSpeed: 60,
-      smartBackspace: true,
-    });
-  }, []);
-  const el2 = React.useRef(null);
-  React.useEffect(() => {
-    // const typed = new Typed(el2.current, {
-    new Typed(el2.current, {
-      strings: ["Back to dashboard?"],
-      startDelay: 120,
-      typeSpeed: 30,
-      backDelay: 40,
-      loop: false,
-      // backSpeed: 60,
-      smartBackspace: true,
-    });
-  }, []);
+  // var typed;
   const navigate = useNavigate();
   const ctx = useContext(AuthContext);
   const [detail] = useState(ctx.isLoggedIn ? true : false);
   const [car, setCar] = useState();
+  const el = React.useRef(null);
+  React.useEffect(() => {
+    detail &&
+      new Typed(el.current, {
+        strings: ["To view the complete report, click here."],
+        startDelay: 100,
+        typeSpeed: 25,
+        // backDelay: 40,
+        loop: false,
+        // backSpeed: 60,
+        smartBackspace: true,
+      });
+  }, [detail]);
+  const el2 = React.useRef(null);
+  React.useEffect(() => {
+    detail &&
+      new Typed(el2.current, {
+        strings: ["Back to dashboard?"],
+        startDelay: 120,
+        typeSpeed: 30,
+        backDelay: 40,
+        loop: false,
+        // backSpeed: 60,
+        smartBackspace: true,
+      });
+  }, [detail]);
   if (localStorage.getItem("car_D") && !car) {
     setCar(JSON.parse(localStorage.getItem("car_D")));
   } else {
