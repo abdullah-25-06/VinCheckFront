@@ -30,17 +30,18 @@ function Navbar() {
               Home
             </NavLink>
           </li>
-          <li className="nav-item navbar-nav mt-1">
-            <NavLink className="nav-link" id="home1" to="/Sample">
-              Sample report
-            </NavLink>
-          </li>
-          <li className="nav-item navbar-nav mt-1">
+          
+          <li className="nav-item navbar-nav mt-2">
             <a className="nav-link" href="#pricing" id="home2" to="pricing">
               Prices
             </a>
           </li>
-          <li className="nav-item navbar-nav mt-1">
+          <li className="nav-item navbar-nav mt-2">
+            <NavLink className="nav-link" id="home1" to="/Sample">
+              Sample report
+            </NavLink>
+          </li>
+          <li className="nav-item navbar-nav mt-2">
             <NavLink className="nav-link" id="home3" to="Login">
               Customer Login
             </NavLink>

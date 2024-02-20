@@ -1,4 +1,5 @@
 import React, { useContext} from "react";
+import { NavLink } from "react-router-dom";
 import DataContext from "./context/data";
 
 function Pricing() {
@@ -46,15 +47,13 @@ function Pricing() {
                   <p>Accident Information</p>
                 </div>
                 <a
-                  href="/#"
+                  href="Signupform"
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
                 >
                   Sign Up
                 </a>
-
-                {/* <a href="#" class="btn-block btn btn-cute mt-4">Learn More</a> */}
               </div>
 
               {/* <!-- professional --> */}
@@ -82,8 +81,12 @@ function Pricing() {
                   <p>Junk & Salvage Information</p>
                   <p>Accident Information</p>
                 </div>
-
-                <a href="/#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
+                <a
+                  href="Signupform"
+                  class="btn-block btn btn-cute-1 mt-4"
+                  id="goldbtn"
+                  style={{ whiteSpace: "nowrap" }}
+                >
                   Sign Up
                 </a>
               </div>
@@ -117,8 +120,12 @@ function Pricing() {
                   <p>Junk & Salvage Information</p>
                   <p>Accident Information</p>
                 </div>
-
-                <a href="/#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
+                <a
+                  href="Signupform"
+                  class="btn-block btn btn-cute-1 mt-4"
+                  id="goldbtn"
+                  style={{ whiteSpace: "nowrap" }}
+                >
                   Sign Up
                 </a>
 
@@ -164,7 +171,12 @@ function Pricing() {
                   <p>Junk & Salvage Information</p>
                   <p>Accident Information</p>
                 </div>
-                <a href="/#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
+                <a
+                  href="Signupform"
+                  class="btn-block btn btn-cute-1 mt-4"
+                  id="goldbtn"
+                  style={{ whiteSpace: "nowrap" }}
+                >
                   Sign Up
                 </a>
 
@@ -196,8 +208,12 @@ function Pricing() {
                   <p>Junk & Salvage Information</p>
                   <p>Accident Information</p>
                 </div>
-
-                <a href="/#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
+                <a
+                  href="Signupform"
+                  class="btn-block btn btn-cute-1 mt-4"
+                  id="goldbtn"
+                  style={{ whiteSpace: "nowrap" }}
+                >
                   Sign Up
                 </a>
               </div>
@@ -231,8 +247,12 @@ function Pricing() {
                   <p>Junk & Salvage Information</p>
                   <p>Accident Information</p>
                 </div>
-
-                <a href="/#" class="btn-block btn btn-cute-1 mt-4" id="goldbtn">
+                <a
+                  href="Signupform"
+                  class="btn-block btn btn-cute-1 mt-4"
+                  id="goldbtn"
+                  style={{ whiteSpace: "nowrap" }}
+                >
                   Sign Up
                 </a>
 

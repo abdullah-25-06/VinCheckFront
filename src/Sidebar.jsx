@@ -1,6 +1,8 @@
 import { React, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "./context/auth";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -8,7 +10,8 @@ function Sidebar() {
   const signOutHandler = async () => {
     const val = await ctx.onLogout();
     if (val.status === 403) return alert(val.msg);
-    alert(val.msg);
+    const notify = () => toast("Logout sucessfully");
+    alert(notify);
     navigate("/");
   };
   return (
@@ -44,12 +47,12 @@ function Sidebar() {
                   <span id="spam">Request Refund</span>
                 </NavLink>
               </button>
-              <button type="button" id="sbutton">
+              {/* <button type="button" id="sbutton">
                 <img src="chat.png" alt='pic'/>
                 <NavLink className="nav-link" to="/Chat">
                   <span id="spam">Live Chat</span>
                 </NavLink>
-              </button>
+              </button> */}
 
               <p style={{ fontSize: "15px", padding: "0", marginLeft: "10px" }}>
                 Authentication

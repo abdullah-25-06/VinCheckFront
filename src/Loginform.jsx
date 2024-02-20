@@ -15,6 +15,12 @@ function Loginform() {
   const navigate = useNavigate();
 
   const FormHandle = async (e) => {
+    if (counter < 0) {
+      counter++;
+    }
+    else {
+      document.getElementById("loginbtn").disabled = true;
+    }
     e.preventDefault();
     const email_val = email.current.value;
     const password_val = password.current.value;
@@ -30,6 +36,7 @@ function Loginform() {
     alert(val.msg);
     navigate("/Dashboard");
   };
+  var counter=0;
   return (
     <>
       <div className=" login">
