@@ -30,6 +30,7 @@ function Loginform() {
     const val = await ctx.onLogin(email_val, password_val);
 
     if (val.status === 404) {
+      document.getElementById("loginbtn").disabled = false;
       return alert(val.msg);
     }
 

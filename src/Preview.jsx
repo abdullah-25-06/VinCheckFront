@@ -8,8 +8,9 @@ function Preview() {
   // For text animated redring library
   const el = React.useRef(null);
   React.useEffect(() => {
-    const typed = new Typed(el.current, {
-      strings: ['To view the complete report, click here.'],
+    // const typed = new Typed(el.current, {
+    new Typed(el.current, {
+      strings: ["To view the complete report, click here."],
       startDelay: 100,
       typeSpeed: 25,
       // backDelay: 40,
@@ -20,8 +21,9 @@ function Preview() {
   }, []);
   const el2 = React.useRef(null);
   React.useEffect(() => {
-    const typed = new Typed(el2.current, {
-      strings: ['Back to dashboard?'],
+    // const typed = new Typed(el2.current, {
+    new Typed(el2.current, {
+      strings: ["Back to dashboard?"],
       startDelay: 120,
       typeSpeed: 30,
       backDelay: 40,
@@ -42,8 +44,7 @@ function Preview() {
   const btnHandler = async () => {
     if (counter < 0) {
       counter++;
-    }
-    else {
+    } else {
       document.getElementById("loginbtn").disabled = true;
     }
     try {
@@ -71,7 +72,7 @@ function Preview() {
   };
   const backBtn = () => {
     navigate("/dashboard");
-  }
+  };
   var counter = 0;
   return (
     <React.Fragment>
@@ -88,7 +89,7 @@ function Preview() {
                 <th scope="row">YEAR</th>
                 <td>{car?.year}</td>
               </tr>
-              <tr class="table-info" id="stable" >
+              <tr class="table-info" id="stable">
                 <th scope="row">MADEIN</th>
                 <td>{car?.madeIn}</td>
               </tr>
@@ -109,7 +110,9 @@ function Preview() {
         </div>
         {detail ? (
           <div className="sdiv">
-            <h2><span ref={el}></span></h2>
+            <h2>
+              <span ref={el}></span>
+            </h2>
             <div className="lbtn">
               <button
                 type="submit"
@@ -122,7 +125,9 @@ function Preview() {
               </button>
             </div>
             {/* <button onClick={btnHandler} id="loginbtn" >Get full report </button> */}
-            <h2 className="mt-4"><span ref={el2}></span></h2>
+            <h2 className="mt-4">
+              <span ref={el2}></span>
+            </h2>
             <div className="lbtn">
               <button
                 type="submit"

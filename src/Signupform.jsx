@@ -33,6 +33,7 @@ function Signupform() {
     );
 
     if (val.status === 404) {
+      document.getElementById("loginbtn").disabled = false;
       return alert(val.msg);
     }
 
