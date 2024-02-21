@@ -1,7 +1,15 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import { React, useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import AuthContext from "./context/auth";
 
 function Canvas() {
+  const navigate = useNavigate();
+  const ctx = useContext(AuthContext);
+  const signOutHandler = async () => {
+    const val = await ctx.onLogout();
+    if (val.status === 403) return alert(val.msg);
+    navigate("/");
+  };
   return (
     <>
       <div className="can">
@@ -52,14 +60,6 @@ function Canvas() {
                     <span id="spam">Request Refund</span>
                   </NavLink>
                 </button>
-                <button type="button" id="sbutton">
-                  <img src="chat.png" alt="pic" />
-                  <NavLink className="nav-link" to="/Chat">
-                    <span id="spam">Live Chat</span>
-                  </NavLink>
-                  {/* <span>Live Chat</span> */}
-                </button>
-
                 <p
                   style={{ fontSize: "15px", padding: "0", marginLeft: "10px" }}
                 >
@@ -71,9 +71,8 @@ function Canvas() {
                     <span id="spam">Profile</span>
                   </NavLink>
                 </button>
-                <button type="button" id="sbutton">
+                <button type="button" id="sbutton" onClick={signOutHandler}>
                   <img src="signout.png" alt="pic" />
-
                   <NavLink className="nav-link" to="/Profile">
                     <span id="spam">Sign Out</span>
                   </NavLink>
