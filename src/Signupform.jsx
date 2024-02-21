@@ -2,6 +2,7 @@ import React, { useRef, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { MDBInput, MDBCol, MDBRow, MDBCheckbox } from "mdb-react-ui-kit";
 import AuthContext from "./context/auth";
+
 function Signupform() {
   const ctx = useContext(AuthContext);
   const email = useRef();
@@ -13,8 +14,7 @@ function Signupform() {
   const FormHandle = async (e) => {
     if (counter < 0) {
       counter++;
-    }
-    else {
+    } else {
       document.getElementById("loginbtn").disabled = true;
     }
     e.preventDefault();
@@ -23,6 +23,7 @@ function Signupform() {
     const phone_val = phone.current.value;
     const password_val = password.current.value;
     if (!email_val || !password_val || !name_val || !phone_val) {
+      document.getElementById("loginbtn").disabled = false;
       return alert("All fields are required");
     }
     const val = await ctx.onSignUp(
@@ -40,7 +41,7 @@ function Signupform() {
     alert(val.msg);
     navigate("/dashboard");
   };
-  var counter=0;
+  var counter = 0;
   return (
     <>
       <div className=" login">

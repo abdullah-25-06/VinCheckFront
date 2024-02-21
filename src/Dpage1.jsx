@@ -45,7 +45,6 @@ function Dpage1(props) {
         }
         setIsLoading(false);
       } catch (error) {
-        console.log(error);
         if (error.response.status === 401) {
           localStorage.removeItem("IsloggedIn");
           localStorage.removeItem("token");

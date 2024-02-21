@@ -7,16 +7,15 @@ import { AuthContextProvider } from "./context/auth";
 import { DataContextProvider } from "./context/data";
 import { BrowserRouter } from "react-router-dom";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <AuthContextProvider>
-    <DataContextProvider>
-      <BrowserRouter>
+  <BrowserRouter>
+    <AuthContextProvider>
+      <DataContextProvider>
         <App />
-      </BrowserRouter>
-    </DataContextProvider>
-  </AuthContextProvider>
+      </DataContextProvider>
+    </AuthContextProvider>
+  </BrowserRouter>
 );
 
 reportWebVitals();

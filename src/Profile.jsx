@@ -1,9 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import axios from "axios";
 import Canvas from "./Canvas";
+import AuthContext from "./context/auth";
 function Loginform() {
+  const ctx = useContext(AuthContext);
   const phone = useRef();
   const name = useRef();
   const old_password = useRef();
@@ -39,6 +41,16 @@ function Loginform() {
       alert("Your Information has been updated successfully ");
       navigate("/Dashboard");
     } catch (err) {
+      if (err.response.status === 401) {
+        localStorage.removeItem("IsloggedIn");
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        localStorage.removeItem("count");
+        ctx.isLoggedIn = false;
+        ctx.username = "";
+        ctx.count = 0;
+        navigate("/");
+      }
       alert(err.response.data.message);
     }
   };

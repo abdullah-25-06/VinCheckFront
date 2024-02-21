@@ -1,16 +1,49 @@
-import React, { useContext, useState } from "react";
-import AuthContext from "./context/auth";
-
-import Typed from "typed.js";
+import React, { useContext, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "./context/auth";
+import Typed from "typed.js";
 import axios from "axios";
 function Preview() {
-  // For text animated redring library
-  // var typed;
   const navigate = useNavigate();
   const ctx = useContext(AuthContext);
   const [detail] = useState(ctx.isLoggedIn ? true : false);
+  const email = useRef();
+  const name = useRef();
+  const phone = useRef();
+  const password = useRef();
+
   const [car, setCar] = useState();
+  var counter1 = 0;
+  const FormHandle = async (e) => {
+    if (counter1 < 0) {
+      counter1++;
+    } else {
+      document.getElementById("loginbtn").disabled = true;
+    }
+    e.preventDefault();
+    const email_val = email.current.value;
+    const name_val = name.current.value;
+    const phone_val = phone.current.value;
+    const password_val = password.current.value;
+    if (!email_val || !password_val || !name_val || !phone_val) {
+      document.getElementById("loginbtn").disabled = false;
+      return alert("All fields are required");
+    }
+    const val = await ctx.onSignUp(
+      email_val,
+      password_val,
+      phone_val,
+      name_val
+    );
+
+    if (val.status === 404) {
+      document.getElementById("loginbtn").disabled = false;
+      return alert(val.msg);
+    }
+
+    alert(val.msg);
+    navigate("/dashboard");
+  };
   const el = React.useRef(null);
   React.useEffect(() => {
     detail &&
@@ -67,7 +100,16 @@ function Preview() {
       navigate("/dashboard");
       alert(data.msg);
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 401) {
+        localStorage.removeItem("IsloggedIn");
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        localStorage.removeItem("count");
+        ctx.isLoggedIn = false;
+        ctx.username = "";
+        ctx.count = 0;
+        navigate("/");
+      }
       alert(error.response.data.error);
     }
   };
@@ -150,35 +192,58 @@ function Preview() {
             <h3 className="mb-5" style={{ textAlign: "center" }}>
               SignUp & Get Your Vechicle Report Instantly!
             </h3>
-            <form className="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 mx-auto">
+            <form
+              onSubmit={FormHandle}
+              className="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 mx-auto"
+            >
               <div data-mdb-input-init class="form-outline mb-3">
                 <label class="form-label" for="form4Example1">
                   Name
                 </label>
-                <input type="email" id="form4Example1" class="form-control" />
+                <input
+                  ref={name}
+                  type="text"
+                  id="form4Example1"
+                  class="form-control"
+                />
               </div>
               <div data-mdb-input-init class="form-outline mb-3">
                 <label class="form-label" for="form4Example1">
                   Email address
                 </label>
-                <input type="email" id="form4Example1" class="form-control" />
+                <input
+                  ref={email}
+                  type="email"
+                  id="form4Example1"
+                  class="form-control"
+                />
               </div>
               <div data-mdb-input-init class="form-outline mb-3">
                 <label class="form-label" for="form4Example1">
                   Phone no
                 </label>
-                <input type="email" id="form4Example1" class="form-control" />
+                <input
+                  ref={phone}
+                  type="text"
+                  id="form4Example1"
+                  class="form-control"
+                />
               </div>
               <div data-mdb-input-init class="form-outline mb-3">
                 <label class="form-label" for="form4Example1">
                   Password
                 </label>
-                <input type="email" id="form4Example1" class="form-control" />
+                <input
+                  ref={password}
+                  type="password"
+                  id="form4Example1"
+                  class="form-control"
+                />
               </div>
 
               <div className="lbtn">
                 <button
-                  type="button"
+                  type="submit"
                   class="btn btn-primary "
                   data-mdb-ripple-init
                   id="loginbtn"

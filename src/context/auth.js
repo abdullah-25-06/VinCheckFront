@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const AuthContext = React.createContext({
   isLoggedIn: false,
   username: null,
@@ -8,6 +8,7 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvider = (props) => {
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [Mcount, setCount] = useState(0);
@@ -44,6 +45,19 @@ export const AuthContextProvider = (props) => {
         msg: "Successfully signed up",
       };
     } catch (err) {
+      if (err.response.status === 401) {
+        localStorage.removeItem("IsloggedIn");
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        localStorage.removeItem("count");
+        // ctx.isLoggedIn = false;
+        // ctx.username = "";
+        // ctx.count = 0;
+        setUsername(null);
+        setCount(0);
+        setIsLoggedIn(false);
+        navigate("/");
+      }
       return {
         status: 404,
         msg: err.response.data.msg,
@@ -78,7 +92,16 @@ export const AuthContextProvider = (props) => {
         msg: "Successfully logged in",
       };
     } catch (err) {
-      console.log(err)
+      if (err.response.status === 401) {
+        localStorage.removeItem("IsloggedIn");
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        localStorage.removeItem("count");
+        setUsername(null);
+        setCount(0);
+        setIsLoggedIn(false);
+        navigate("/");
+      }
       return {
         status: 404,
         msg: err.response.data.error,
@@ -121,6 +144,16 @@ export const AuthContextProvider = (props) => {
       setUsername("");
       return { msg: data.msg, status: data.status };
     } catch (err) {
+      if (err.response.status === 401) {
+        localStorage.removeItem("IsloggedIn");
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        localStorage.removeItem("count");
+        setUsername(null);
+        setCount(0);
+        setIsLoggedIn(false);
+        navigate("/");
+      }
       return { msg: err.msg, status: err.status };
     }
   };
