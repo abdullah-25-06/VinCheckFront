@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
-import Aos from "aos";
+import React from "react";
+import Pricing from "./Pricing";
+import Footer from "./Footer";
 import { NavLink } from "react-router-dom";
-
-function Navbar() {
+import Aos from "aos";
+import { useEffect } from "react";
+function Pricing2() {
   useEffect(() => {
     Aos.init();
   }, []);
@@ -11,17 +13,8 @@ function Navbar() {
     <>
       <div className="navhead container">
         <span className="items col-md-11 mx-auto container">
-          <NavLink
-            className="navbar-brand"
-            id="brandname"
-            to="/"
-            data-aos="flip-left"
-            data-aos-anchor="#example-anchor"
-            data-aos-offset="500"
-            data-aos-duration="500"
-            data-aos-delay="500"
-          >
-            Vincheck Central
+          <NavLink className="navbar-brand" id="brandname" to="/">
+            <p style={{ color: "black" }}>Vincheck Central</p>
           </NavLink>
 
           <li className="nav-item navbar-nav mt-1">
@@ -45,15 +38,10 @@ function Navbar() {
             </NavLink>
           </li>
         </span>
-
         <span>
           <label
             className="burger"
             htmlFor="burger "
-            data-aos="zoom-up"
-            data-aos-offset="500"
-            data-aos-duration="500"
-            data-aos-delay="500"
             type="checkbox"
             data-bs-toggle="offcanvas"
             href="#offcanvasExample"
@@ -61,12 +49,19 @@ function Navbar() {
             id="burger"
           >
             <input type="checkbox"></input>
-            <span className=""></span>
-            <span className=""></span>
-            <span className=""></span>
+            <span
+              style={{ backgroundColor: "black", marginTop: "-3px" }}
+            ></span>
+            <span
+              style={{ backgroundColor: "black", marginTop: "-3px" }}
+            ></span>
+            <span
+              style={{ backgroundColor: "black", marginTop: "-3px" }}
+            ></span>
           </label>
         </span>
       </div>
+      {/* Phone navbar */}
       <div
         class="offcanvas offcanvas-start"
         tabindex="-1"
@@ -113,8 +108,12 @@ function Navbar() {
           </div>
         </div>
       </div>
+
+      <Pricing />
+
+      <Footer />
     </>
   );
 }
 
-export default Navbar;
+export default Pricing2;

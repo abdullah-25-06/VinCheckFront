@@ -7,6 +7,8 @@ import Profile from "./Profile";
 import Paypal from "./PayPal";
 import Preview from "./Preview";
 import Signupform from "./Signupform";
+import Pricing2 from "./Pricing2";
+
 function App() {
   return (
     <>
@@ -20,6 +22,7 @@ function App() {
         <Route path="Profile" element={<Profile />}></Route>
         <Route path="Order" element={<Paypal />}></Route>
         <Route path="Preview" element={<Preview />}></Route>
+        <Route path="Pricing" element={<Pricing2 />}></Route>
       </Routes>
     </>
   );

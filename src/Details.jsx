@@ -3,7 +3,7 @@ import React from "react";
 function Details() {
   return (
     <>
-      <div className="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-10 mx-auto details">
+      <div className="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-10 mx-auto details pt-4">
         {/* data-aos="fade-right" */}
         <div className="detailtext" data-aos-offset="10" data-aos="fade-right">
           <h2>Vital information to consider before buying</h2>

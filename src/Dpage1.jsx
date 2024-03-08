@@ -15,6 +15,7 @@ function Dpage1(props) {
   const [dataArray, setDataArray] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isData, setIsData] = useState(null);
+  const [transaction, SetTransactions] = useState([]);
   const inp = useRef("");
   const selectHandler = (e) => {
     if (0 <= e.target.value <= d_ctx.data.length - 1) {
@@ -27,8 +28,7 @@ function Dpage1(props) {
       try {
         const {
           data: { getreports },
-        } = await axios.get("https://vincheck-production.up.railway.app/report", {
-        // } = await axios.get("http://localhost:8000/report", {
+        } = await axios.get(`${process.env.REACT_APP_DEVELOPMENT_URL}/report`, {
           headers: {
             "Content-Type": "application/json",
             auth_token: localStorage.getItem("token")
@@ -50,6 +50,36 @@ function Dpage1(props) {
           localStorage.removeItem("token");
           localStorage.removeItem("username");
           localStorage.removeItem("count");
+          localStorage.removeItem("admin");
+          ctx.isLoggedIn = false;
+          ctx.username = "";
+          ctx.count = 0;
+          navigate("/");
+        }
+      }
+    }
+    async function trans() {
+      try {
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_DEVELOPMENT_URL}/transaction`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              auth_token: localStorage.getItem("token")
+                ? `bearer ${localStorage.getItem("token")}`
+                : "",
+            },
+          }
+        );
+        
+        SetTransactions([...data.transactionData]);
+      } catch (error) {
+        if (error.response?.status === 401) {
+          localStorage.removeItem("IsloggedIn");
+          localStorage.removeItem("token");
+          localStorage.removeItem("username");
+          localStorage.removeItem("count");
+          localStorage.removeItem("admin");
           ctx.isLoggedIn = false;
           ctx.username = "";
           ctx.count = 0;
@@ -58,14 +88,58 @@ function Dpage1(props) {
       }
     }
 
+    trans();
     api();
+
     return () => {};
-  }, [d_ctx, ctx, navigate]);
+  }, [d_ctx, ctx, navigate, SetTransactions]);
+
   const data = d_ctx?.data.map((data, index) => {
     return (
       <option value={index} key={index}>
         {data.count} Reports for {data.price}
       </option>
+    );
+  });
+  const transData = transaction?.map((data, index) => {
+    return (
+      <tr>
+        <td colSpan="1" id="colborder">
+          {index + 1}
+        </td>
+        <td colSpan="1" id="colborder">
+          {data.order_id}
+        </td>
+        <td colSpan="1" id="colborder">
+          {data.amount.currency_code}
+        </td>
+        <td colSpan="1" id="colborder">
+          {data.amount.value}$
+        </td>
+        <td className="text-center">
+          {data.refunded === true ? (
+            <img
+              id="tcheck"
+              src="tick.png"
+              alt=""
+              style={{ width: "18px", height: "18px" }}
+            />
+          ) : (
+            <td className="text-center">
+              <img
+                id="tcheck2"
+                src="cross.png"
+                alt=""
+                style={{
+                  width: "18px",
+                  height: "18px",
+                  marginLeft: "10px",
+                }}
+              />
+            </td>
+          )}
+        </td>
+      </tr>
     );
   });
   const row =
@@ -128,9 +202,12 @@ function Dpage1(props) {
     const val = inp.current.value;
     if (!val) return alert("Enter a valid Vin");
     try {
-      const data = await axios.get(`https://vincheck-production.up.railway.app/vindata?vin=${val}`, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const data = await axios.get(
+        `${process.env.REACT_APP_DEVELOPMENT_URL}/vindata?vin=${val}`,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       localStorage.setItem("car_D", JSON.stringify(data.data));
       navigate({
         pathname: "/Preview",
@@ -143,7 +220,7 @@ function Dpage1(props) {
     try {
       const dataSample = dataArray[index];
       await axios.put(
-        `https://vincheck-production.up.railway.app/vindata${dataSample._id}`,
+        `${process.env.REACT_APP_DEVELOPMENT_URL}/vindata${dataSample._id}`,
         {},
         {
           headers: {
@@ -173,6 +250,7 @@ function Dpage1(props) {
       }).toString(),
     });
   };
+
   return (
     <>
       <div className="dashboard">
@@ -242,6 +320,71 @@ function Dpage1(props) {
               >
                 Payment
               </button>
+            </div>
+            <div className="dform1 mt-1" id="sectable">
+              <div className="tablecontainer" style={{ height: "20vh" }}>
+                <table class="table" style={{ padding: "5px" }}>
+                  <thead>
+                    <tr>
+                      <th scope="col" id="colb">
+                        #
+                      </th>
+                      <th scope="col" id="colb">
+                        Transaction ID{" "}
+                      </th>
+                      <th scope="col" id="colb">
+                        Currency{" "}
+                      </th>
+                      <th scope="col" id="colb">
+                        Amount
+                      </th>
+                      <th scope="col" id="colb">
+                        Refund
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* <tr>
+                      <td colSpan="1" id="colborder">
+                        1
+                      </td>
+                      <td colSpan="1" id="colborder">
+                        12345678901234567
+                      </td>
+                      <td colSpan="1" id="colborder">
+                        Us dollar
+                      </td>
+                      <td colSpan="1" id="colborder">
+                        120$
+                      </td>
+                      <td className="text-center">
+                        {cond === true ? (
+                          <img
+                            id="tcheck"
+                            src="tick.png"
+                            alt=""
+                            style={{ width: "18px", height: "18px" }}
+                          />
+                        ) : (
+                          <td className="text-center">
+                            <img
+                              id="tcheck2"
+                              src="cross.png"
+                              alt=""
+                              style={{
+                                width: "18px",
+                                height: "18px",
+                                marginLeft: "10px",
+                              }}
+                            />
+                          </td>
+                        )}
+                      </td>
+                    </tr> */}
+                    {transData}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
           <div className="col-xxl-6 col-xl-6  col-lg-7 col-md-12 dcol3">

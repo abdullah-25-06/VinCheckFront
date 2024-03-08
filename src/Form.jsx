@@ -10,7 +10,7 @@ function Form() {
 
     if (!val) return alert("Enter a valid Vin");
     try {
-      const data = await axios.get(`https://vincheck-production.up.railway.app/vindata?vin=${val}`, {
+      const data = await axios.get(`${process.env.REACT_APP_DEVELOPMENT_URL}/vindata?vin=${val}`, {
         headers: { "Content-Type": "application/json" },
       });
       localStorage.setItem("car_D", JSON.stringify(data.data));

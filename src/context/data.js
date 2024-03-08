@@ -10,10 +10,10 @@ export const DataContextProvider = (props) => {
   useEffect(() => {
     async function Call() {
       try {
-        const { data } = await axios.get("https://vincheck-production.up.railway.app/package");
+        const { data } = await axios.get(`${process.env.REACT_APP_DEVELOPMENT_URL}/package`)
         setPricing(data);
       } catch (err) {
-        console.log(err);
+        alert(err);
       }
     }
     Call();

@@ -12,6 +12,7 @@ export const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [Mcount, setCount] = useState(0);
+
   const updateCount = (count) => {
     setCount(count);
     localStorage.setItem("count", count);
@@ -19,7 +20,7 @@ export const AuthContextProvider = (props) => {
   const SignUpHandler = async (email, password, phoneno, username) => {
     try {
       const { data } = await axios.post(
-        "https://vincheck-production.up.railway.app/register/",
+        `${process.env.REACT_APP_DEVELOPMENT_URL}/register/`,
         {
           email,
           password,
@@ -36,10 +37,12 @@ export const AuthContextProvider = (props) => {
       setIsLoggedIn(true);
       setUsername(data.username);
       setCount(data.count);
+
       localStorage.setItem("token", data.access_token);
       localStorage.setItem("IsloggedIn", "1");
       localStorage.setItem("username", data.username);
       localStorage.setItem("count", data.count);
+
       return {
         status: 200,
         msg: "Successfully signed up",
@@ -50,9 +53,8 @@ export const AuthContextProvider = (props) => {
         localStorage.removeItem("token");
         localStorage.removeItem("username");
         localStorage.removeItem("count");
-        // ctx.isLoggedIn = false;
-        // ctx.username = "";
-        // ctx.count = 0;
+        localStorage.removeItem("admin");
+
         setUsername(null);
         setCount(0);
         setIsLoggedIn(false);
@@ -67,7 +69,7 @@ export const AuthContextProvider = (props) => {
   const loginHandler = async (email, password) => {
     try {
       const { data } = await axios.post(
-        "https://vincheck-production.up.railway.app/login/",
+        `${process.env.REACT_APP_DEVELOPMENT_URL}/login`,
         // "http://localhost:8000/login/",
         {
           email,
@@ -79,6 +81,7 @@ export const AuthContextProvider = (props) => {
           },
         }
       );
+      console.log(data);
       if (data.isAdmin) localStorage.setItem("admin", data.isAdmin);
       setIsLoggedIn(true);
       setUsername(data.username);
@@ -87,16 +90,18 @@ export const AuthContextProvider = (props) => {
       localStorage.setItem("IsloggedIn", "1");
       localStorage.setItem("username", data.username);
       localStorage.setItem("count", data.count);
+
       return {
         status: 200,
         msg: "Successfully logged in",
       };
     } catch (err) {
-      if (err.response.status === 401) {
+      if (err.response?.status === 401) {
         localStorage.removeItem("IsloggedIn");
         localStorage.removeItem("token");
         localStorage.removeItem("username");
         localStorage.removeItem("count");
+        localStorage.removeItem("admin");
         setUsername(null);
         setCount(0);
         setIsLoggedIn(false);
@@ -104,7 +109,7 @@ export const AuthContextProvider = (props) => {
       }
       return {
         status: 404,
-        msg: err.response.data.error,
+        msg: err.response?.data.error,
       };
     }
   };
@@ -113,18 +118,19 @@ export const AuthContextProvider = (props) => {
     const isUser = localStorage.getItem("IsloggedIn");
     const username = localStorage.getItem("username");
     const count = localStorage.getItem("count");
-    console.log("here");
+    // const transactions = localStorage.getItem("tData");
+
     if (isUser === "1" && username) {
-      console.log("here1");
       setIsLoggedIn(true);
       setUsername(username);
       setCount(count);
     }
   }, [isLoggedIn, username, Mcount]);
+  
   const logoutHandler = async () => {
     try {
       const { data } = await axios.post(
-        "https://vincheck-production.up.railway.app/logout/",
+        `${process.env.REACT_APP_DEVELOPMENT_URL}/logout/`,
         {},
         {
           headers: {
@@ -139,7 +145,7 @@ export const AuthContextProvider = (props) => {
       localStorage.removeItem("token");
       localStorage.removeItem("username");
       localStorage.removeItem("count");
-      localStorage.removeItem("admin", data.isAdmin);
+      localStorage.removeItem("admin");
       setIsLoggedIn(false);
       setUsername("");
       return { msg: data.msg, status: data.status };
@@ -149,6 +155,7 @@ export const AuthContextProvider = (props) => {
         localStorage.removeItem("token");
         localStorage.removeItem("username");
         localStorage.removeItem("count");
+        localStorage.removeItem("admin");
         setUsername(null);
         setCount(0);
         setIsLoggedIn(false);

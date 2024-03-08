@@ -23,7 +23,7 @@ function Loginform() {
     }
     try {
       await axios.put(
-        "https://vincheck-production.up.railway.app/profile/",
+        `${process.env.REACT_APP_DEVELOPMENT_URL}/profile/`,
         {
           username: name_val,
           password: newP_val,

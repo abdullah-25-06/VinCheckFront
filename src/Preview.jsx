@@ -83,7 +83,7 @@ function Preview() {
     }
     try {
       const { data } = await axios.post(
-        "https://vincheck-production.up.railway.app/detail",
+        `${process.env.REACT_APP_DEVELOPMENT_URL}/detail`,
         {
           vin: car.vin,
         },
