@@ -43,11 +43,11 @@ function Dashboard() {
         }
       );
       document.getElementById("loginbtn").disabled = false;
-      ctx.updateCount(data.user)
+      ctx.updateCount(data.user);
       alert(data.msg);
     } catch (error) {
       document.getElementById("loginbtn").disabled = false;
-      if (error.response.status === 401) {
+      if (error.response?.status === 401) {
         localStorage.removeItem("IsloggedIn");
         localStorage.removeItem("token");
         localStorage.removeItem("username");
@@ -58,6 +58,8 @@ function Dashboard() {
         ctx.count = 0;
         navigate("/");
       }
+
+      alert(error.response.data.msg);
     }
   };
   return (
