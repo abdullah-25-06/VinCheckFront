@@ -14,7 +14,7 @@ function Dpage1(props) {
   // const [selectPackage, setSelectPackage] = useState(null);
   const [dataArray, setDataArray] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [query, setQuery] = useState("");
+  const [setQuery] = useState("");
   const [isData, setIsData] = useState(null);
   const [transaction, SetTransactions] = useState([]);
   const inp = useRef("");
