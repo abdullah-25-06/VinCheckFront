@@ -14,6 +14,7 @@ function Dpage1(props) {
   // const [selectPackage, setSelectPackage] = useState(null);
   const [dataArray, setDataArray] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [query, setQuery] = useState("");
   const [isData, setIsData] = useState(null);
   const [transaction, SetTransactions] = useState([]);
   const inp = useRef("");
@@ -146,6 +147,7 @@ function Dpage1(props) {
               <td colSpan="1" id="colborder">
                 {index + 1}
               </td>
+
               <td colSpan="1" id="colborder">
                 {elem.vin}
               </td>
@@ -313,7 +315,7 @@ function Dpage1(props) {
                 You have {ctx.count} remaining credits to view report. Select
                 any package below to proceed.
               </p>
-              
+
               <button
                 onClick={btnHandler}
                 class="btn btn-success mt-2"
@@ -359,6 +361,11 @@ function Dpage1(props) {
             <div class="card">
               <div class="header">
                 <h2>All Reports</h2>
+                <input
+                  type="search"
+                  placeholder=" Search VIN..."
+                  onClick={(e) => setQuery(e.target.value)}
+                />
               </div>
               <div className="tablecontainer">
                 <table class="table">

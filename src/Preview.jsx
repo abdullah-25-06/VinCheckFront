@@ -138,7 +138,7 @@ function Preview() {
   }, [detail]);
 
   const btnHandler = async () => {
-    console.log(car.vin)
+    
     if (counter < 0) {
       counter++;
     } else {

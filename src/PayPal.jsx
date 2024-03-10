@@ -9,7 +9,7 @@ function Paypal(props) {
   const navigate = useNavigate();
   const initialOptions = {
     clientId:
-      "AdC9yYyaVxVfUiP_zfUS1pcR0R4nvCHlFoXfy0SyR1Ghh0pLolnXKstmON0Ynqbaea4dFu3yth_K-pSI",
+      "ARyJGaBPIOJstrE2W7e8EHlO6_X9yku5Oe-8qYWh5CHsx6wv8YSxxRHmUkQBsYGwzMpyQ1XxZ277cO8h",
     intent: "capture",
     currency: "USD",
   };
