@@ -1,19 +1,73 @@
-import React, { useContext, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState, useRef, useEffect } from "react";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import AuthContext from "./context/auth";
 import Typed from "typed.js";
 import axios from "axios";
+import DataContext from "./context/data";
 function Preview() {
   const navigate = useNavigate();
+  const d_ctx = useContext(DataContext);
+  const [selectPackage, setSelectPackage] = useState(null);
   const ctx = useContext(AuthContext);
   const [detail] = useState(ctx.isLoggedIn ? true : false);
   const email = useRef();
   const name = useRef();
   const phone = useRef();
   const password = useRef();
-
+  const vin_data = useRef();
   const [car, setCar] = useState();
   var counter1 = 0;
+  const selectHandler = (e) => {
+    if (0 <= e.target.value <= d_ctx.data.length - 1) {
+      setSelectPackage(d_ctx.data[e.target.value]);
+    }
+  };
+  if (localStorage.getItem("car_D") && !car) {
+    setCar(JSON.parse(localStorage.getItem("car_D")));
+  }
+  useEffect(() => {
+    setSelectPackage(d_ctx.data[0]);
+    if (localStorage.getItem("car_D") && !car) {
+      setCar(JSON.parse(localStorage.getItem("car_D")));
+    }
+  }, [d_ctx, car, detail]);
+  const data = d_ctx?.data.map((data, index) => {
+    return (
+      <option value={index} key={index}>
+        {data.count} Reports for {data.price}
+      </option>
+    );
+  });
+  const PayPalHandler = async () => {
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_DEVELOPMENT_URL}/updateVin`,
+        {
+          vin: car?.vin,
+        },
+        {
+          headers: {
+            auth_token: localStorage.getItem("token")
+              ? `bearer ${localStorage.getItem("token")}`
+              : "",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      navigate({
+        pathname: "/Order",
+        search: createSearchParams({
+          id: selectPackage._id,
+          currency: selectPackage.currency,
+          price: selectPackage.price,
+          title: selectPackage.title,
+          report: selectPackage.count,
+        }).toString(),
+      });
+    } catch (err) {
+      alert(err.response.data.msg);
+    }
+  };
   const FormHandle = async (e) => {
     if (counter1 < 0) {
       counter1++;
@@ -25,6 +79,8 @@ function Preview() {
     const name_val = name.current.value;
     const phone_val = phone.current.value;
     const password_val = password.current.value;
+    const vin = car?.vin;
+
     if (!email_val || !password_val || !name_val || !phone_val) {
       document.getElementById("loginbtn").disabled = false;
       return alert("All fields are required");
@@ -33,7 +89,8 @@ function Preview() {
       email_val,
       password_val,
       phone_val,
-      name_val
+      name_val,
+      vin
     );
 
     if (val.status === 404) {
@@ -42,7 +99,16 @@ function Preview() {
     }
 
     alert(val.msg);
-    navigate("/dashboard");
+    navigate({
+      pathname: "/Order",
+      search: createSearchParams({
+        id: selectPackage._id,
+        currency: selectPackage.currency,
+        price: selectPackage.price,
+        title: selectPackage.title,
+        report: selectPackage.count,
+      }).toString(),
+    });
   };
   const el = React.useRef(null);
   React.useEffect(() => {
@@ -70,12 +136,9 @@ function Preview() {
         smartBackspace: true,
       });
   }, [detail]);
-  if (localStorage.getItem("car_D") && !car) {
-    setCar(JSON.parse(localStorage.getItem("car_D")));
-  } else {
-    navigate("/");
-  }
+
   const btnHandler = async () => {
+    console.log(car.vin)
     if (counter < 0) {
       counter++;
     } else {
@@ -85,7 +148,7 @@ function Preview() {
       const { data } = await axios.post(
         `${process.env.REACT_APP_DEVELOPMENT_URL}/detail`,
         {
-          vin: car.vin,
+          vin: car?.vin,
         },
         {
           headers: {
@@ -133,41 +196,72 @@ function Preview() {
                 <td>{car?.year}</td>
               </tr>
               <tr class="table-info" id="stable">
-                <th scope="row">MADEIN</th>
-                <td>{car?.madeIn}</td>
+                <th scope="row">MAKE</th>
+                <td>{car?.make}</td>
               </tr>
               <tr class="table-light" id="stable">
                 <th scope="row">MODEL</th>
                 <td>{car?.model}</td>
               </tr>
               <tr class="table-info" id="stable">
-                <th scope="row">ENGINE CYLINDERS</th>
-                <td>{car?.engineCylinder}</td>
+                <th scope="row">Type</th>
+                <td>{car?.type}</td>
               </tr>
               <tr class="table-light" id="stable">
-                <th scope="row">MAKE</th>
-                <td>{car?.make}</td>
+                <th scope="row">COLOR</th>
+                <td>{car?.color}</td>
               </tr>
             </tbody>
           </table>
         </div>
+
         {detail ? (
           <div className="sdiv">
             <h2>
               <span ref={el}></span>
             </h2>
-            <div className="lbtn">
-              <button
-                type="submit"
-                class="btn btn-primary mt-1 "
-                data-mdb-ripple-init
-                id="loginbtn"
-                onClick={btnHandler}
-              >
-                Get full report!
-              </button>
-            </div>
-            {/* <button onClick={btnHandler} id="loginbtn" >Get full report </button> */}
+            {ctx.count !== "0" ? (
+              <div className="lbtn">
+                <button
+                  type="submit"
+                  class="btn btn-primary mt-1 "
+                  data-mdb-ripple-init
+                  id="loginbtn"
+                  onClick={btnHandler}
+                >
+                  Get full report!
+                </button>
+              </div>
+            ) : (
+              <div>
+                <div data-mdb-input-init class="form-outline mb-3">
+                  <label class="form-label" for="form4Example1">
+                    Package
+                  </label>
+                  <select
+                    class="form-control"
+                    name="package"
+                    onChange={selectHandler}
+                    required
+                    style={{width:'300px'}}
+                  >
+                    {data}
+                  </select>
+                </div>
+                <div className="lbtn" style={{ whiteSpace: "nowrap" }}>
+                  <button
+                    type="submit"
+                    class="btn btn-primary mt-1 "
+                    data-mdb-ripple-init
+                    id="loginbtn"
+                    style={{ padding: "8px 10px 8px 10px", width: "200px" }}
+                    onClick={PayPalHandler}
+                  >
+                    Proceed To Payment
+                  </button>
+                </div>
+              </div>
+            )}
             <h2 className="mt-4">
               <span ref={el2}></span>
             </h2>
@@ -182,7 +276,6 @@ function Preview() {
                 Dashboard
               </button>
             </div>
-            {/* <button onClick={backBtn} id="pbtn">Dashboard</button> navigate */}
           </div>
         ) : (
           <div className="sform">
@@ -196,7 +289,7 @@ function Preview() {
               onSubmit={FormHandle}
               className="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-12 mx-auto"
             >
-              <div data-mdb-input-init class="form-outline mb-3">
+              <div data-mdb-input-init class="form-outline mb-2">
                 <label class="form-label" for="form4Example1">
                   Name
                 </label>
@@ -207,7 +300,7 @@ function Preview() {
                   class="form-control"
                 />
               </div>
-              <div data-mdb-input-init class="form-outline mb-3">
+              <div data-mdb-input-init class="form-outline mb-2">
                 <label class="form-label" for="form4Example1">
                   Email address
                 </label>
@@ -218,7 +311,7 @@ function Preview() {
                   class="form-control"
                 />
               </div>
-              <div data-mdb-input-init class="form-outline mb-3">
+              <div data-mdb-input-init class="form-outline mb-2">
                 <label class="form-label" for="form4Example1">
                   Phone no
                 </label>
@@ -229,7 +322,33 @@ function Preview() {
                   class="form-control"
                 />
               </div>
-              <div data-mdb-input-init class="form-outline mb-3">
+              <div data-mdb-input-init class="form-outline mb-2">
+                <label class="form-label" for="form4Example1">
+                  Vin Number
+                </label>
+                <input
+                  ref={vin_data}
+                  type="text"
+                  id="form4Example1"
+                  class="form-control"
+                  value={car?.vin}
+                  disabled="true"
+                />
+              </div>
+              <div data-mdb-input-init class="form-outline mb-2">
+                <label class="form-label" for="form4Example1">
+                  Package
+                </label>
+                <select
+                  class="form-control"
+                  name="package"
+                  onChange={selectHandler}
+                  required
+                >
+                  {data}
+                </select>
+              </div>
+              <div data-mdb-input-init class="form-outline mb-2">
                 <label class="form-label" for="form4Example1">
                   Password
                 </label>
@@ -241,14 +360,18 @@ function Preview() {
                 />
               </div>
 
-              <div className="lbtn">
+              <div
+                className="lbtn"
+                style={{ width: "minContent", whiteSpace: "nowrap" }}
+              >
                 <button
                   type="submit"
                   class="btn btn-primary "
                   data-mdb-ripple-init
                   id="loginbtn"
+                  style={{ padding: "10px 5px 10px 5px" }}
                 >
-                  Sign in
+                  Proceed To Payment
                 </button>
               </div>
             </form>

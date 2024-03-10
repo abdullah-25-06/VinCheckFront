@@ -8,6 +8,11 @@ import Paypal from "./PayPal";
 import Preview from "./Preview";
 import Signupform from "./Signupform";
 import Pricing2 from "./Pricing2";
+import Delivery from "./Delivery";
+import PP from "./Privacy";
+import Terms from "./Terms";
+import Newpage from "./Newpage";
+
 
 function App() {
   return (
@@ -23,6 +28,10 @@ function App() {
         <Route path="Order" element={<Paypal />}></Route>
         <Route path="Preview" element={<Preview />}></Route>
         <Route path="Pricing" element={<Pricing2 />}></Route>
+        <Route path="Delivery" element={<Delivery />}></Route>
+        <Route path="Privacy" element={<PP />}></Route>
+        <Route path="Terms" element={<Terms />}></Route>
+        <Route path="Sample" element={<Newpage />}></Route>
       </Routes>
     </>
   );

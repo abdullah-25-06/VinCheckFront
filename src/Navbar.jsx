@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+
 import Aos from "aos";
+
 import { NavLink } from "react-router-dom";
 
 function Navbar() {
@@ -11,6 +13,10 @@ function Navbar() {
     <>
       <div className="navhead container">
         <span className="items col-md-11 mx-auto container">
+          {/* <NavLink className="navbar-brand" id="brandname" to="/" data-aos='flip-left' data-aos-anchor="#example-anchor"
+                        data-aos-offset="500"
+                        data-aos-duration="500"
+                        data-aos-delay="500">Vincheck Central</NavLink> */}
           <NavLink
             className="navbar-brand"
             id="brandname"
@@ -21,7 +27,7 @@ function Navbar() {
             data-aos-duration="500"
             data-aos-delay="500"
           >
-            Vincheck Central
+            <img src="wlogo.png" alt="" id="wlogo" />
           </NavLink>
 
           <li className="nav-item navbar-nav mt-1">

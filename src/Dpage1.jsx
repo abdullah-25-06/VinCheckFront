@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { NavLink, useNavigate, createSearchParams } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import AuthContext from "./context/auth";
 import DataContext from "./context/data";
@@ -11,19 +11,19 @@ function Dpage1(props) {
   const ctx = useContext(AuthContext);
   const d_ctx = useContext(DataContext);
   const navigate = useNavigate();
-  const [selectPackage, setSelectPackage] = useState(null);
+  // const [selectPackage, setSelectPackage] = useState(null);
   const [dataArray, setDataArray] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isData, setIsData] = useState(null);
   const [transaction, SetTransactions] = useState([]);
   const inp = useRef("");
-  const selectHandler = (e) => {
-    if (0 <= e.target.value <= d_ctx.data.length - 1) {
-      setSelectPackage(d_ctx.data[e.target.value]);
-    }
-  };
+  // const selectHandler = (e) => {
+  //   if (0 <= e.target.value <= d_ctx.data.length - 1) {
+  //     setSelectPackage(d_ctx.data[e.target.value]);
+  //   }
+  // };
   useEffect(() => {
-    setSelectPackage(d_ctx.data[0]);
+    // setSelectPackage(d_ctx.data[0]);
     async function api() {
       try {
         const {
@@ -71,8 +71,8 @@ function Dpage1(props) {
             },
           }
         );
-        
-        SetTransactions([...data.transactionData]);
+        console.log();
+        SetTransactions(data.transactionData);
       } catch (error) {
         if (error.response?.status === 401) {
           localStorage.removeItem("IsloggedIn");
@@ -94,54 +94,50 @@ function Dpage1(props) {
     return () => {};
   }, [d_ctx, ctx, navigate, SetTransactions]);
 
-  const data = d_ctx?.data.map((data, index) => {
-    return (
-      <option value={index} key={index}>
-        {data.count} Reports for {data.price}
-      </option>
-    );
-  });
-  const transData = transaction?.map((data, index) => {
-    return (
-      <tr>
-        <td colSpan="1" id="colborder">
-          {index + 1}
-        </td>
-        <td colSpan="1" id="colborder">
-          {data.order_id}
-        </td>
-        <td colSpan="1" id="colborder">
-          {data.amount.currency_code}
-        </td>
-        <td colSpan="1" id="colborder">
-          {data.amount.value}$
-        </td>
-        <td className="text-center">
-          {data.refunded === true ? (
+  // const data = d_ctx?.data.map((data, index) => {
+  //   return (
+  //     <option value={index} key={index}>
+  //       {data.count} Reports for {data.price}
+  //     </option>
+  //   );
+  // });
+  const transData = (
+    <tr>
+      <td colSpan="1" id="colborder">
+        {0 + 1}
+      </td>
+      <td colSpan="1" id="colborder">
+        {transaction?.order_id}
+      </td>
+      <td colSpan="1" id="colborder">
+        {transaction?.amount?.value}$
+      </td>
+      <td className="text-center">
+        {transaction?.refunded === true ? (
+          <img
+            id="tcheck"
+            src="tick.png"
+            alt=""
+            style={{ width: "18px", height: "18px" }}
+          />
+        ) : (
+          <td className="text-center">
             <img
-              id="tcheck"
-              src="tick.png"
+              id="tcheck2"
+              src="cross.png"
               alt=""
-              style={{ width: "18px", height: "18px" }}
+              style={{
+                width: "18px",
+                height: "18px",
+                marginLeft: "10px",
+              }}
             />
-          ) : (
-            <td className="text-center">
-              <img
-                id="tcheck2"
-                src="cross.png"
-                alt=""
-                style={{
-                  width: "18px",
-                  height: "18px",
-                  marginLeft: "10px",
-                }}
-              />
-            </td>
-          )}
-        </td>
-      </tr>
-    );
-  });
+          </td>
+        )}
+      </td>
+    </tr>
+  );
+
   const row =
     dataArray.length >= 1
       ? dataArray?.map((elem, index) => {
@@ -200,7 +196,12 @@ function Dpage1(props) {
       : "";
   const btnHandler = async () => {
     const val = inp.current.value;
-    if (!val) return alert("Enter a valid Vin");
+    document.getElementById("vinBtn").disabled = true;
+    if (!val) {
+      document.getElementById("vinBtn").disabled = false;
+      return alert("Enter a valid Vin");
+    }
+
     try {
       const data = await axios.get(
         `${process.env.REACT_APP_DEVELOPMENT_URL}/vindata?vin=${val}`,
@@ -208,12 +209,14 @@ function Dpage1(props) {
           headers: { "Content-Type": "application/json" },
         }
       );
+
       localStorage.setItem("car_D", JSON.stringify(data.data));
       navigate({
         pathname: "/Preview",
       });
     } catch (err) {
-      alert(err.message);
+      document.getElementById("vinBtn").disabled = false;
+      alert(err.response.data.error);
     }
   };
   const checkHandler = async (index) => {
@@ -238,18 +241,30 @@ function Dpage1(props) {
       alert(err.message);
     }
   };
-  const payHandler = () => {
-    navigate({
-      pathname: "/Order",
-      search: createSearchParams({
-        id: selectPackage._id,
-        currency: selectPackage.currency,
-        price: selectPackage.price,
-        title: selectPackage.title,
-        report: selectPackage.count,
-      }).toString(),
-    });
-  };
+  // const payHandler = async () => {
+  //   try {
+  //     await axios.get(`${process.env.REACT_APP_DEVELOPMENT_URL}/check`, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         auth_token: localStorage.getItem("token")
+  //           ? `bearer ${localStorage.getItem("token")}`
+  //           : "",
+  //       },
+  //     });
+  //     navigate({
+  //       pathname: "/Order",
+  //       search: createSearchParams({
+  //         id: selectPackage._id,
+  //         currency: selectPackage.currency,
+  //         price: selectPackage.price,
+  //         title: selectPackage.title,
+  //         report: selectPackage.count,
+  //       }).toString(),
+  //     });
+  //   } catch (err) {
+  //     alert(err.response.data.msg);
+  //   }
+  // };
 
   return (
     <>
@@ -298,28 +313,22 @@ function Dpage1(props) {
                 You have {ctx.count} remaining credits to view report. Select
                 any package below to proceed.
               </p>
-              <select
-                class="form-control"
-                name="package"
-                onChange={selectHandler}
-                required
-              >
-                {data}
-              </select>
+              
               <button
                 onClick={btnHandler}
                 class="btn btn-success mt-2"
+                id="vinBtn"
                 style={{ border: "none" }}
               >
                 Check Vehicle Details
               </button>
-              <button
+              {/* <button
                 class="btn btn-success mt-2"
                 style={{ marginLeft: "3px", border: "none" }}
                 onClick={payHandler}
               >
                 Payment
-              </button>
+              </button> */}
             </div>
             <div className="dform1 mt-1" id="sectable">
               <div className="tablecontainer" style={{ height: "20vh" }}>
@@ -332,9 +341,7 @@ function Dpage1(props) {
                       <th scope="col" id="colb">
                         Transaction ID{" "}
                       </th>
-                      <th scope="col" id="colb">
-                        Currency{" "}
-                      </th>
+
                       <th scope="col" id="colb">
                         Amount
                       </th>
@@ -343,46 +350,7 @@ function Dpage1(props) {
                       </th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {/* <tr>
-                      <td colSpan="1" id="colborder">
-                        1
-                      </td>
-                      <td colSpan="1" id="colborder">
-                        12345678901234567
-                      </td>
-                      <td colSpan="1" id="colborder">
-                        Us dollar
-                      </td>
-                      <td colSpan="1" id="colborder">
-                        120$
-                      </td>
-                      <td className="text-center">
-                        {cond === true ? (
-                          <img
-                            id="tcheck"
-                            src="tick.png"
-                            alt=""
-                            style={{ width: "18px", height: "18px" }}
-                          />
-                        ) : (
-                          <td className="text-center">
-                            <img
-                              id="tcheck2"
-                              src="cross.png"
-                              alt=""
-                              style={{
-                                width: "18px",
-                                height: "18px",
-                                marginLeft: "10px",
-                              }}
-                            />
-                          </td>
-                        )}
-                      </td>
-                    </tr> */}
-                    {transData}
-                  </tbody>
+                  <tbody>{transData}</tbody>
                 </table>
               </div>
             </div>

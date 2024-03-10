@@ -1,25 +1,31 @@
+
 import React from 'react'
-import Pricing from './Pricing'
-import Footer from './Footer'
+// import Pricing from './Pricing'
+// import Footer from './Footer'
 import { NavLink } from 'react-router-dom'
 import Aos from 'aos'
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import { Viewer } from '@react-pdf-viewer/core';
+import { Worker } from '@react-pdf-viewer/core';
+import Footer from "./Footer"
+// import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'
 import { useEffect } from 'react'
+
 function Pricing2() {
-    
+
     useEffect(() => {
         Aos.init();
     }, [])
 
     return (
         <>
-             <div className="navhead container">
+            <div className="navhead container">
                 <span className="items col-md-11 mx-auto container" >
 
-                    <NavLink className="navbar-brand" id="brandname" to="/" >
                     <NavLink className="navbar-brand" id="brandname" to="/" data-aos='flip-left' data-aos-anchor="#example-anchor"
                         data-aos-offset="500"
                         data-aos-duration="500"
-                        data-aos-delay="500"><img src="glogo.png" alt="" id="wlogo" /></NavLink></NavLink>
+                        data-aos-delay="500"><img src="glogo.png" alt="" id="wlogo" /></NavLink>
 
                     <li className="nav-item navbar-nav mt-1">
                         <NavLink className="nav-link" id="home" to="/" >Home</NavLink>
@@ -42,9 +48,9 @@ function Pricing2() {
                     >
                         <input type='checkbox'>
                         </input>
-                        <span  style={{backgroundColor:'green', marginTop:'-3px'}}></span>
-                        <span style={{backgroundColor:'green',marginTop:'-3px'}}></span>
-                        <span style={{backgroundColor:'green',marginTop:'-3px'}}></span>
+                        <span style={{ backgroundColor: 'green', marginTop: '-3px' }}></span>
+                        <span style={{ backgroundColor: 'green', marginTop: '-3px' }}></span>
+                        <span style={{ backgroundColor: 'green', marginTop: '-3px' }}></span>
                     </label>
                 </span>
 
@@ -52,7 +58,12 @@ function Pricing2() {
             {/* Phone navbar */}
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">VINCHECK CENTRAL</h5>
+                    {/* <h5 class="offcanvas-title" id="offcanvasExampleLabel">VINCHECK CENTRAL</h5> */}
+                    
+                    <NavLink className="navbar-brand" id="brandname" to="/" data-aos='flip-left' data-aos-anchor="#example-anchor"
+                        data-aos-offset="500"
+                        data-aos-duration="500"
+                        data-aos-delay="500"><img src="glogo.png" alt="" id="wlogo" /></NavLink>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" id='canvasclose'></button>
                 </div>
                 <div class="offcanvas-body">
@@ -83,10 +94,25 @@ function Pricing2() {
 
                 </div>
             </div>
+            <div className="pdfhead">
+                <div className="pdf mb-5 " style={{
+                    height: '650px',
+                    
+                }}>
+                    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js" className="pb-1">
+                        {/* <!-- The viewer component will be put here --> */}
+                    <h3 className='text-center py-2' id="sr">Our Sample Report!</h3>
+                        <Viewer fileUrl="s.pdf"  style={{width:'100%'}}/>
+                    </Worker>
+                    {/* <Viewer fileUrl="C:\Users\AU COMPUTERS\OneDrive\Desktop\S.pdf" />; */}
 
-            <Pricing />
-          
+                </div>
+            </div>
+            <div className='mt-5'>
+
             <Footer/>
+            </div>
+
         </>
     )
 }

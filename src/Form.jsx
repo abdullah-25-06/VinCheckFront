@@ -5,21 +5,35 @@ import { useNavigate } from "react-router-dom";
 function Form() {
   const inp = useRef();
   const navigate = useNavigate();
+  let counter = 0;
   const clickHandler = async () => {
+    if (counter < 0) {
+      counter++;
+    } else {
+      document.getElementById("pbtn").disabled = true;
+    }
     const val = inp.current.value;
 
-    if (!val) return alert("Enter a valid Vin");
+    if (!val) {
+      document.getElementById("pbtn").disabled = false;
+      return alert("Enter a valid Vin");
+    }
     try {
-      const data = await axios.get(`${process.env.REACT_APP_DEVELOPMENT_URL}/vindata?vin=${val}`, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const data = await axios.get(
+        `${process.env.REACT_APP_DEVELOPMENT_URL}/vindata?vin=${val}`,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      
       localStorage.setItem("car_D", JSON.stringify(data.data));
 
       navigate({
         pathname: "/Preview",
       });
     } catch (err) {
-      alert(err.message);
+      document.getElementById("pbtn").disabled = false;
+      alert(err.response.data.error);
     }
   };
 
@@ -36,7 +50,7 @@ function Form() {
             placeholder="Enter VIN to Search"
             ref={inp}
           />
-          <p className='text-center pt-2 wformp'>Example: 1VXBR12EXCP901213</p>
+          <p className="text-center pt-2 wformp">Example: 1VXBR12EXCP901213</p>
           <h5 className="text-center captcha">Solve Captcha</h5>
           <div className="col-md-11 mx-auto inputgroup">
             <div className="captcha">

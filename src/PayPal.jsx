@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import AuthContext from "./context/auth";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 function Paypal(props) {
   const ctx = useContext(AuthContext);
+  const navigate = useNavigate();
   const initialOptions = {
     clientId:
       "AdC9yYyaVxVfUiP_zfUS1pcR0R4nvCHlFoXfy0SyR1Ghh0pLolnXKstmON0Ynqbaea4dFu3yth_K-pSI",
@@ -17,7 +19,24 @@ function Paypal(props) {
   const price = queryParameters.get("price");
   const title = queryParameters.get("title");
   const report = queryParameters.get("report");
-
+  useEffect(() => {
+    async function call() {
+      try {
+        await axios.get(`${process.env.REACT_APP_DEVELOPMENT_URL}/check`, {
+          headers: {
+            "Content-Type": "application/json",
+            auth_token: localStorage.getItem("token")
+              ? `bearer ${localStorage.getItem("token")}`
+              : "",
+          },
+        });
+      } catch (err) {
+        alert(err.response.data.msg);
+        navigate("/dashboard");
+      }
+    }
+    call();
+  }, [navigate]);
   const createOrder = (data) => {
     return fetch(`${process.env.REACT_APP_DEVELOPMENT_URL}/api/orders`, {
       method: "POST",
@@ -62,13 +81,22 @@ function Paypal(props) {
         <div className=" login">
           <div className="navhead">
             <div className="title">
-              <NavLink className="nav-link" to="/">
-                <p style={{ color: "white" }}>Vincheck Central</p>
-              </NavLink>
+            <NavLink
+            className="navbar-brand"
+            id="brandname"
+            to="/"
+            data-aos="flip-left"
+            data-aos-anchor="#example-anchor"
+            data-aos-offset="500"
+            data-aos-duration="500"
+            data-aos-delay="500"
+          >
+            <img src="wlogo.png" alt="" id="wlogo" style={{marginLeft:'10px'}} />
+          </NavLink>
             </div>
             <NavLink to="/Login" className="nav-link">
               <div className="log">
-                <p style={{ color: "white" }}>Login</p>
+                <p style={{ color: "white" ,marginRight:'10px' }}>Login</p>
               </div>
             </NavLink>
           </div>
