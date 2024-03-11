@@ -60,8 +60,17 @@ function Loginform() {
         <div className="head">
           <div className="navhead">
             <div className="title">
-              <NavLink className="nav-link" to="/">
-                <p>Vincheck Central</p>
+            <NavLink
+                className="navbar-brand"
+                id="brandname"
+                to="/"
+                data-aos="flip-left"
+                data-aos-anchor="#example-anchor"
+                data-aos-offset="500"
+                data-aos-duration="500"
+                data-aos-delay="500"
+              >
+                <img src="glogo.png" alt="" id="wlogo" style={{marginLeft:'10px',width: "180px",marginBottom:'15px'}} />
               </NavLink>
             </div>
             <a
@@ -82,11 +91,11 @@ function Loginform() {
           <div className="reqform">
             <h1 style={{ color: "white" }}>Account Information</h1>
             <div className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-9 mx-auto mainre2 mt-4">
-              <div className="reqbox ">
+              <div className="reqbox">
                 <div class="row ">
                   <div
                     className="pt-2 pb-1"
-                    style={{ display: "flex", justifyContent: "center" }}
+                    style={{ display: "flex", justifyContent: "center" ,gap:'10px'}}
                   >
                     <div class="col">
                       <div data-mdb-input-init class="form-outline">
@@ -119,15 +128,15 @@ function Loginform() {
                           type="text"
                           id="form3Example"
                           class="form-control"
-                          placeholder="Enter your Phone Number"
+                          placeholder="Phone Number"
                           ref={phone}
                         />
                       </div>
                     </div>
                   </div>
                   <div
-                    className="pt-3"
-                    style={{ display: "flex", justifyContent: "center" }}
+                    className="pt-2"
+                    style={{ display: "flex", justifyContent: "center",gap:'10px' }}
                   >
                     <div class="col">
                       <div data-mdb-input-init class="form-outline">

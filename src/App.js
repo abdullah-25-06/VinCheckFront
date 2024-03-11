@@ -12,6 +12,7 @@ import Delivery from "./Delivery";
 import PP from "./Privacy";
 import Terms from "./Terms";
 import Newpage from "./Newpage";
+import Modal from "./Modal";
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
       {/* <Main/> */}
       <Routes>
         <Route path="/" element={<Main />}></Route>
-        <Route path="Signupform" element={<Signupform />}></Route>
+        <Route path="/m" element={<Modal/>}></Route>
+        {/* <Route path="Signupform" element={<Signupform />}></Route> */}
         <Route path="Login" element={<Loginform />}></Route>
         <Route path="dashboard" element={<Dpage1 />}></Route>
         <Route path="Request" element={<Dashboard />}></Route>
