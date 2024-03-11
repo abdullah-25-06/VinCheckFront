@@ -3,6 +3,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Form() {
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+  const c_inp = useRef();
+  const num1 = getRandomInt(10) + 1;
+  const num2 = getRandomInt(9) + 1;
   const inp = useRef();
   const navigate = useNavigate();
   let counter = 0;
@@ -13,7 +19,10 @@ function Form() {
       document.getElementById("pbtn").disabled = true;
     }
     const val = inp.current.value;
-
+    if (num1 + num2 !== +c_inp.current.value) {
+      document.getElementById("pbtn").disabled = false;
+      return alert("Invalid Captcha");
+    }
     if (!val) {
       document.getElementById("pbtn").disabled = false;
       return alert("Enter a valid Vin");
@@ -25,7 +34,7 @@ function Form() {
           headers: { "Content-Type": "application/json" },
         }
       );
-      
+
       localStorage.setItem("car_D", JSON.stringify(data.data));
 
       navigate({
@@ -59,11 +68,14 @@ function Form() {
                 class="form-control"
                 id="exampleFormControlInput2"
                 placeholder="Answer"
+                ref={c_inp}
               ></input>
             </div>
             <div className="box">
               <div>
-                <p className="boxp">4+1=</p>
+                <p className="boxp">
+                  {num1}+{num2}=
+                </p>
               </div>
             </div>
           </div>
