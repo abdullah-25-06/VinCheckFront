@@ -4,6 +4,7 @@ import Footer from './Footer'
 import { NavLink } from 'react-router-dom'
 import Aos from 'aos'
 import { useEffect } from 'react'
+import Modal from "./Modal"
 function Pricing2() {
     
     useEffect(() => {
@@ -87,6 +88,7 @@ function Pricing2() {
             <Pricing />
           
             <Footer/>
+            <Modal/>
         </>
     )
 }

@@ -32,14 +32,14 @@ function Footer() {
                                     Services
                                 </h6>
                                 <p>
-                                    <a  className="text-reset" id="textdec" href='https://threadzapparel.netlify.app/' target='blank'>VIN Lookup</a>
+                                    <a  className="text-reset" id="textdec" href='/' >VIN Lookup</a>
                                 </p>
                                 <p>
-                                    <a href="https://shawlinkenterprise.netlify.app/" className="text-reset" id="textdec" target='blank'>Sample Report</a>
+                                    <a href="/Sample" className="text-reset" id="textdec" >Sample Report</a>
                                 </p>
                                 
                                 <p>
-                                    <a href="https://aesthetic-gelato-6ac4b5.netlify.app/" className="text-reset" id="textdec" target='blank'>Customer Login</a>
+                                    <a href="/Login" className="text-reset" id="textdec" >Customer Login</a>
                                 </p>
                             </div>
                             {/* <!-- Grid column --> */}
@@ -51,7 +51,7 @@ function Footer() {
                                     IMPORTANTS
                                 </h6>
                                 <p>
-                                    <NavLink href="#!" className="text-reset" id="textdec" to="/contact">Pricing</NavLink>
+                                    <a href="/pricing" className="text-reset" id="textdec" to="">Pricing</a>
                                 </p>
                                 <p>
                                     <a href="/Delivery" className="text-reset" id="textdec" >Delivery Policy</a>
@@ -87,7 +87,7 @@ function Footer() {
                 </section>
                 <div className="footend text-center p-4" >
                     © 2023 Copyright | 
-                    <a className="text-reset fw-bold"id="textdec" href='/' >VINCHECK CENTRAL.COM</a>
+                    <a className="text-reset fw-bold"  style={{cursor:'pointer'}}  > VIN CHECK CENTRAL</a>
                 </div>
                 {/* <!-- Copyright --> */}
             </footer>

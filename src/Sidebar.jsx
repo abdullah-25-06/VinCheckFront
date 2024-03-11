@@ -20,7 +20,7 @@ function Sidebar() {
             <header class="sidebar-header"></header>
 
             <nav class="sidebar-menu">
-              <span style={{ fontSize: "19px" }} id="cname">
+              <span style={{ fontSize: "19px"}} id="cname"  >
                 {ctx.username}
               </span>
               <hr />

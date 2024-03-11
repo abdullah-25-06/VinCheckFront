@@ -9,6 +9,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Form from "./Form";
 import Automation from "./Automation";
+import Modal from "./Modal"
 import Source from "./Source";
 function Main() {
   useEffect(() => {
@@ -60,6 +61,7 @@ function Main() {
           <Footer />
         </div>
       </div>
+      <Modal/>
     </>
   );
 }

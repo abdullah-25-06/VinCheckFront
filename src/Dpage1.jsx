@@ -92,7 +92,7 @@ function Dpage1(props) {
     trans();
     api();
 
-    return () => {};
+    return () => { };
   }, [d_ctx, ctx, navigate, SetTransactions]);
 
   // const data = d_ctx?.data.map((data, index) => {
@@ -142,59 +142,59 @@ function Dpage1(props) {
   const row =
     dataArray.length >= 1
       ? dataArray?.map((elem, index) => {
-          return (
-            <tr key={index}>
-              <td colSpan="1" id="colborder">
-                {index + 1}
-              </td>
+        return (
+          <tr key={index}>
+            <td colSpan="1" id="colborder">
+              {index + 1}
+            </td>
 
-              <td colSpan="1" id="colborder">
-                {elem.vin}
-              </td>
-              <td
-                colSpan="1"
-                id="colborder"
-                style={{ whiteSpace: "wrap", wordBreak: "break-all" }}
-              >
-                {elem.email}
-              </td>
-              <td colSpan="1" id="colborder">
-                {elem.pending ? "pending" : "delivered"}
-              </td>
-              <td
-                colSpan="1"
-                id="colborder"
-                style={{ whiteSpace: "wrap", wordBreak: "break-all" }}
-              >
-                {moment(elem.createdAt).format("DD MMMM YYYY, HH:mm:ss")}
-              </td>
-              {localStorage.getItem("admin") ? (
-                <td colSpan="1" id="lastcol">
+            <td colSpan="1" id="colborder">
+              {elem.vin}
+            </td>
+            <td
+              colSpan="1"
+              id="colborder"
+              style={{ whiteSpace: "wrap", wordBreak: "break-all" }}
+            >
+              {elem.email}
+            </td>
+            <td colSpan="1" id="colborder">
+              {elem.pending ? "pending" : "delivered"}
+            </td>
+            <td
+              colSpan="1"
+              id="colborder"
+              style={{ whiteSpace: "wrap", wordBreak: "break-all" }}
+            >
+              {moment(elem.createdAt).format("DD MMMM YYYY, HH:mm:ss")}
+            </td>
+            {localStorage.getItem("admin") ? (
+              <td colSpan="1" id="lastcol">
+                Submit
+                <button
+                  class="btn btn-success mt-2"
+                  style={{ fontSize: "13px" }}
+                  onClick={() => {
+                    checkHandler(index);
+                  }}
+                >
                   Submit
-                  <button
-                    class="btn btn-success mt-2"
-                    style={{ fontSize: "13px" }}
-                    onClick={() => {
-                      checkHandler(index);
-                    }}
-                  >
-                    Submit
-                  </button>
-                </td>
-              ) : (
-                <td colSpan="1" id="lastcol">
+                </button>
+              </td>
+            ) : (
+              <td colSpan="1" id="lastcol">
+                View Report
+                <button
+                  class="btn btn-success mt-2"
+                  style={{ fontSize: "13px" }}
+                >
                   View Report
-                  <button
-                    class="btn btn-success mt-2"
-                    style={{ fontSize: "13px" }}
-                  >
-                    View Report
-                  </button>
-                </td>
-              )}
-            </tr>
-          );
-        })
+                </button>
+              </td>
+            )}
+          </tr>
+        );
+      })
       : "";
   const btnHandler = async () => {
     const val = inp.current.value;
@@ -273,9 +273,18 @@ function Dpage1(props) {
       <div className="dashboard">
         <div className="head">
           <div className="navhead">
-            <div className="title mt-1">
-              <NavLink className="nav-link" to="/">
-                <p>Vincheck Central</p>
+            <div className="title">
+              <NavLink
+                className="navbar-brand"
+                id="brandname"
+                to="/"
+                data-aos="flip-left"
+                data-aos-anchor="#example-anchor"
+                data-aos-offset="500"
+                data-aos-duration="500"
+                data-aos-delay="500"
+              >
+                <img src="glogo.png" alt="" id="wlogo" style={{marginLeft:'10px',width: "180px",marginBottom:'15px'}} />
               </NavLink>
             </div>
             <a
@@ -360,12 +369,17 @@ function Dpage1(props) {
           <div className="col-xxl-6 col-xl-6  col-lg-7 col-md-12 dcol3">
             <div class="card">
               <div class="header">
-                <h2>All Reports</h2>
-                <input
-                  type="search"
-                  placeholder=" Search VIN..."
-                  onClick={(e) => setQuery(e.target.value)}
-                />
+                <div className="headerhead">
+
+
+                  <h2>All Reports</h2>
+                  <input
+                    type="search"
+                    placeholder=" Search VIN..."
+                    id="tsearch"
+                  // onClick={(e) => setQuery(e.target.value)}
+                  />
+                </div>
               </div>
               <div className="tablecontainer">
                 <table class="table">

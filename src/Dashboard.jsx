@@ -68,8 +68,17 @@ function Dashboard() {
         <div className="head">
           <div className="navhead">
             <div className="title">
-              <NavLink className="nav-link" to="/">
-                <p>Vincheck Central</p>
+            <NavLink
+                className="navbar-brand"
+                id="brandname"
+                to="/"
+                data-aos="flip-left"
+                data-aos-anchor="#example-anchor"
+                data-aos-offset="500"
+                data-aos-duration="500"
+                data-aos-delay="500"
+              >
+                <img src="glogo.png" alt="" id="wlogo" style={{marginLeft:'10px',width: "180px",marginBottom:'15px'}} />
               </NavLink>
             </div>
             <a
@@ -89,11 +98,11 @@ function Dashboard() {
           <Sidebar />
           <div className="reqform">
             <h1 style={{ color: "white" }}>Refund Application</h1>
-            <div className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-9 mx-auto mt-4 mainreq">
+            <div className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-11 mx-auto mt-4 mainreq">
               <div className="reqbox">
                 <div class="row mb-4">
                   <div className="reqbox2">
-                    <div class="col-md-4">
+                    {/* <div class="col-md-4">
                       <div data-mdb-input-init class="form-outline">
                         <label
                           class="form-label"
@@ -129,9 +138,154 @@ function Dashboard() {
                           ref={t_id}
                         />
                       </div>
+                      
+                    </div> */}
+                    <div
+                      className="pt-3"
+                      style={{ display: "flex", justifyContent: "center",gap:'10px' }}
+                    >
+                      <div class="col">
+                        <div data-mdb-input-init class="form-outline">
+                          <label
+                            class="form-label"
+                            for="form3Example1"
+                            id="reqlabel"
+                          >
+                            {" "}
+                            Fullname
+                          </label>
+                          <input
+                            type="text"
+                            id="form3Example1"
+                            class="form-control"
+                            placeholder="Full name"
+                            // style={{width:'100px'}}
+                          // ref={old_password}
+                          />
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div data-mdb-input-init class="form-outline">
+                          <label
+                            class="form-label"
+                            for="form3Example1"
+                            id="reqlabel"
+                          >
+                            {" "}
+                            Email Address
+                          </label>
+                          <input
+                            type="text"
+                            id="form3Example"
+                            class="form-control"
+                            placeholder="Email Address"
+                          // ref={new_password}
+                          />
+                        </div>
+                      </div>
                     </div>
+
                   </div>
-                  <div className="mb-3 pt-3">
+                  <div
+                    className="pt-2"
+                    style={{ display: "flex", justifyContent: "center",gap:'10px'  }}
+                  >
+
+
+
+
+                    <div class="col">
+                      <div data-mdb-input-init class="form-outline">
+                        <label
+                          class="form-label"
+                          for="form3Example1"
+                          id="reqlabel"
+                        >
+                          {" "}
+                          Phone number
+                        </label>
+                        <input
+                          type="text"
+                          id="form3Example1"
+                          class="form-control"
+                          placeholder="Phone number "
+                          ref={a_id}
+                        />
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div data-mdb-input-init class="form-outline">
+                        <label
+                          class="form-label"
+                          for="form3Example1"
+                          id="reqlabel"
+                        >
+                          {" "}
+                          City
+                        </label>
+                        <input
+                          type="text"
+                          id="form3Example"
+                          class="form-control"
+                          placeholder="City"
+                          ref={t_id}
+                        />
+                      </div>
+                    </div>
+
+
+
+
+
+                  </div>
+                  <div
+                    className="pt-2"
+                    style={{ display: "flex", justifyContent: "center",gap:'10px'  }}
+                  >
+
+                    <div class="col">
+                      <div data-mdb-input-init class="form-outline">
+                        <label
+                          class="form-label"
+                          for="form3Example1"
+                          id="reqlabel"
+                        >
+                          {" "}
+                          PayPal Account ID
+                        </label>
+                        <input
+                          type="text"
+                          id="form3Example1"
+                          class="form-control"
+                          placeholder="Ex: Z5H7DMJMUY863"
+                          ref={a_id}
+                        />
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div data-mdb-input-init class="form-outline">
+                        <label
+                          class="form-label"
+                          for="form3Example1"
+                          id="reqlabel"
+                        >
+                          {" "}
+                          Transaction ID
+                        </label>
+                        <input
+                          type="text"
+                          id="form3Example"
+                          class="form-control"
+                          placeholder="Transaction id"
+                          ref={t_id}
+                        />
+                      </div>
+                    </div>
+
+
+
+                  </div>
+                  <div className="pt-2">
                     <label for="exampleFormControlTextarea1" class="form-label">
                       I need a refund because?
                     </label>
@@ -142,7 +296,7 @@ function Dashboard() {
                       ref={reasons}
                     ></textarea>
                   </div>
-                  <div className="reqbtn">
+                  <div className="reqbtn mt-2">
                     <button
                       onClick={btnHandle}
                       class="btn btn-success mt-2"

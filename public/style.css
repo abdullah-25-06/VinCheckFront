@@ -26,6 +26,17 @@ html {
   --formcolor: "#aef359b2";
   --formbgcolor: "black";
 }
+.modal{
+  font-family: var(--navbarfont);
+}
+.modal-body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  /* border: 1px solid black; */
+}
 
 .burger {
   position: relative;
@@ -575,7 +586,7 @@ ul li {
   text-align: center;
   text-decoration: none;
   width: 100%;
-  padding: 13px 18px;
+  padding: 10px 13px;
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
@@ -1144,7 +1155,7 @@ ul li {
 
 .card1 {
   width: 25vw !important;
-  height: 38vh;
+  height: 100%!important;
   border-radius: 10px;
   box-shadow: var(--hovercolor) 0px 3px 8px;
   /* box-shadow: var(--hovercolor) 3px 4px 5px; */
@@ -1596,6 +1607,10 @@ span {
   /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   /* background-color: yellow; */
 }
+.title{
+  /* border: 1px solid black; */
+  
+}
 
 .title p,
 .log p {
@@ -1946,6 +1961,25 @@ tbody {
 #colborder {
   border: 0.0625rem solid rgba(41, 43, 48, 0.05);
 }
+/* Table Search */
+.headerhead{
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+#tsearch{
+  box-shadow: transparent!important;
+  outline: none;
+  padding: 10px;
+  width: 300px!important;
+  height:40px;
+  font-size: .9rem;
+}
+/*  */
 
 /* Sidebar */
 
@@ -2073,6 +2107,8 @@ body.open .sidebar {
 #cname {
   padding-left: 50px;
   font-family: "Poppins";
+  position: relative;
+  top: 7px;
 }
 
 .reqform h1 {
@@ -2107,7 +2143,7 @@ body.open .sidebar {
 
 .reqform {
   /* border: 1px solid black; */
-  padding: 20px;
+  padding: 10px;
   font-family: var(--navbarfont);
   width: 100%;
   /* background-color: #aef359b2; */
@@ -2116,7 +2152,7 @@ body.open .sidebar {
 
 .mainreq {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  margin: 20px;
+  /* margin: 20px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2124,6 +2160,9 @@ body.open .sidebar {
   overflow: hidden;
   border-radius: 7px;
   padding: 20px;
+  /* width: 700px!important; */
+  /* height: ; */
+  /* border: 2px solid black; */
 }
 
 .mainre2 {
@@ -2134,21 +2173,25 @@ body.open .sidebar {
   background-color: white;
   overflow: hidden;
   border-radius: 7px;
+  /* border: 2px solid black; */
 
-  height: 40vh;
+  /* height: 60vh; */
 }
 
 .reqbox {
   /* border: 1px solid black; */
-  width: 50vw;
-  height: 45vh;
+  /* width: 500px; */
+  height: 100%;
+  padding: 10px;
+  width: 100%;
+  /* height: 45vh; */
 }
 
 .reqbox2 {
   width: 100%;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
+  /* display: flex !important; */
+  /* align-items: center !important; */
+  /* justify-content: space-between !important; */
   /* border: 1px solid black; */
   /* gap: 10px; */
 }
@@ -2180,6 +2223,7 @@ body.open .sidebar {
 }
 
 .reqbtn {
+  /* border: 1px solid black; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2439,6 +2483,7 @@ textarea.form-control {
   width: 100%;
   height: 100vh;
   display: flex;
+  /* z-index: 10000; */
 }
 
 /*  */
@@ -2505,7 +2550,7 @@ textarea.form-control {
 
   .wform,
   .col2 {
-    height: 50vh;
+    height: 50.5vh;
   }
 
   .col1 img {
@@ -2545,7 +2590,7 @@ textarea.form-control {
   }
 
   .hero {
-    height: 135vh !important;
+    height: 136vh !important;
     /* width: 1200px !important; */
   }
 
@@ -3773,6 +3818,14 @@ textarea.form-control {
 
 
     }
+    .mainreq {
+      /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+      /* margin: 20px; */
+      /* display: flex; */
+      /* border: 1px solid black; */
+      padding: 0px;
+      margin: 0px;
+    }
 
     .formbox2 {
         margin-top: 20px !important;
@@ -3812,10 +3865,11 @@ textarea.form-control {
   }
 
   .reqbox {
-    width: 95% !important;
+    /* width: 99% !important; */
+    /* gap: 10px; */
     /* white-space: nowrap; */
     height: min-content;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
   }
   .title a,
   .log p {

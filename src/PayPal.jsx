@@ -94,11 +94,14 @@ function Paypal(props) {
             <img src="wlogo.png" alt="" id="wlogo" style={{marginLeft:'10px'}} />
           </NavLink>
             </div>
-            <NavLink to="/Login" className="nav-link">
+            {/* <NavLink to="/Login" className="nav-link"> */}
               <div className="log">
-                <p style={{ color: "white" ,marginRight:'10px' }}>Login</p>
+                <a href="/Dashboard" style={{textDecoration:'none'}}>
+
+                <p style={{ color: "white" ,marginRight:'6px' }}>Dashboard</p>
+                </a>
               </div>
-            </NavLink>
+            {/* </NavLink> */}
           </div>
           <div className="nborder"></div>
 
