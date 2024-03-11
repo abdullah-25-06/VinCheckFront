@@ -40,6 +40,12 @@ function Sidebar() {
                 Get Help
               </p>
               <button type="button" id="sbutton">
+                <img src="chat.png" alt='pic' />
+                <a className="nav-link" href="https://tawk.to/chat/65cbbfd80ff6374032cd1d4c/1hmhuapn4" target="_blank"  rel="noreferrer"  style={{textDecoration:'none'}}>
+                  <span id="spam">Live Chat</span>
+                </a>
+              </button>
+              <button type="button" id="sbutton">
                 <img src="efund.png" alt='pic' />
                 <NavLink className="nav-link" to="/Request">
                   <span id="spam">Request Refund</span>

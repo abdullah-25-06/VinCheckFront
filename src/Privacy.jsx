@@ -31,22 +31,22 @@ function Delivery() {
           </NavLink>
 
           <li className="nav-item navbar-nav mt-1">
-            <NavLink className="nav-link" id="home" to="/">
+            <NavLink className="nav-link" id="home" to="/" style={{color:'black'}}>
               Home
             </NavLink>
           </li>
           <li className="nav-item navbar-nav mt-1">
-            <NavLink className="nav-link" id="home1" to="/Sample">
+            <NavLink className="nav-link" id="home1" to="/Sample" style={{color:'black'}}>
               Sample report
             </NavLink>
           </li>
           <li className="nav-item navbar-nav mt-1">
-            <NavLink className="nav-link" id="home2" to="/pricing">
+            <NavLink className="nav-link" id="home2" to="/pricing" style={{color:'black'}}>
               Prices
             </NavLink>
           </li>
           <li className="nav-item navbar-nav mt-1">
-            <NavLink className="nav-link" id="home3" to="/Login">
+            <NavLink className="nav-link" id="home3" to="/Login" style={{color:'black'}}>
               Customer Login
             </NavLink>
           </li>
@@ -108,7 +108,7 @@ function Delivery() {
               </a>
               <a className="nav-link" href="/pricing">
                 <li id="li">
-                  <img src="p.png" alt="" /> Prices
+                  <img src="p.png" alt="" /> Pricing
                 </li>
               </a>
               <a className="nav-link" to="Login" href="Login">
