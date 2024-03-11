@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+// import { NavLink } from 'react-router-dom'
 
 
 function Footer() {
@@ -58,7 +58,7 @@ function Footer() {
                             
                                 </p>
                                 <p>
-                                    <a href="/Privacy" className="text-reset" id="textdec" >Privacy Policy</a>
+                                    <a href="/Privacy" className="text-reset" id="textdec" >Refund Policy</a>
                                     
                                 </p>
                                 <p>
@@ -72,13 +72,10 @@ function Footer() {
                             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                                 {/* <!-- Links --> */}
                                 <h6 className="text-uppercase fw-bold mb-4" id='fotcon' >Contact</h6>
-                                <p id="textdec"><i className="fas fa-home me-3"></i> VinccheckCentral@gmail.com</p>
-                                <p id="textdec">
-                                    <i className="fas fa-envelope me-3"></i>
-                                    Owner@gmail.com
-                                </p>
-                                <p><i className="fas fa-phone me-3"></i> +9234-12345678</p>
-                                <p><i className="fas fa-print me-3"></i> +9231-12345678</p>
+                                <p id="textdec"><i className="fas fa-home me-3"></i> Info@vincheckcentral.com</p>
+                                
+                                <p><i className="fas fa-phone me-3"></i> +1 801 697 6810</p>
+                                {/* <p><i className="fas fa-print me-3"></i> +9231-12345678</p> */}
                             </div>
                             {/* <!-- Grid column --> */}
                         </div>
@@ -87,7 +84,7 @@ function Footer() {
                 </section>
                 <div className="footend text-center p-4" >
                     © 2023 Copyright | 
-                    <a className="text-reset fw-bold"  style={{cursor:'pointer'}}  > VIN CHECK CENTRAL</a>
+                    <a className="text-reset fw-bold" href="/"  style={{cursor:'pointer'}}  > VIN CHECK CENTRAL</a>
                 </div>
                 {/* <!-- Copyright --> */}
             </footer>

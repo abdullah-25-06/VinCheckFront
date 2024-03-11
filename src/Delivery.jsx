@@ -25,16 +25,16 @@ function Delivery() {
                             data-aos-delay="500"><img src="glogo.png" alt="" id="wlogo" /></NavLink></NavLink>
 
                     <li className="nav-item navbar-nav mt-1">
-                        <NavLink className="nav-link" id="home" to="/" >Home</NavLink>
+                        <NavLink className="nav-link" id="home" to="/" style={{color:'black'}}>Home</NavLink>
                     </li>
                     <li className="nav-item navbar-nav mt-1">
-                        <NavLink className="nav-link" id="home1" to="/Sample" >Sample report</NavLink>
+                        <NavLink className="nav-link" id="home1" to="/Sample"style={{color:'black'}} >Sample report</NavLink>
                     </li>
                     <li className="nav-item navbar-nav mt-1">
-                        <NavLink className="nav-link" id="home2" to="/pricing" >Prices</NavLink>
+                        <NavLink className="nav-link" id="home2" to="/pricing" style={{color:'black'}} >Pricing</NavLink>
                     </li>
                     <li className="nav-item navbar-nav mt-1">
-                        <NavLink className="nav-link" id="home3" to="/Login" >Customer Login</NavLink>
+                        <NavLink className="nav-link" id="home3" to="/Login" style={{color:'black'}} >Customer Login</NavLink>
                     </li>
                 </span>
                 <span>

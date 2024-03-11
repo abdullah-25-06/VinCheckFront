@@ -1,9 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import DataContext from "./context/data";
 // import Modal from './Modal'
 
 function Pricing() {
   // const [packages,setpackages]=useState('')
+  const alerts=()=>{
+    alert("Enter VIN to continue for signup!")
+  }
 
   const ctx = useContext(DataContext);
   return (
@@ -24,7 +27,7 @@ function Pricing() {
               >
                 <p class="text-center" id="gheading" style={{ color: "white" }}>
                   {ctx.data.length > 0 ? ctx.data[0].title.toUpperCase() : ""
-                    //  value=ctx.data[0].title
+                 
 }
 
                 </p>
@@ -37,7 +40,6 @@ function Pricing() {
                   >
                     {ctx.data.length > 0 ? ctx.data[0].price : ""}
                   </h1>
-                  {/* <h1 class="price monthly animate__bounceIn d-none">19.99</h1> */}
                 </div>
                 <p style={{ color: "white", cursor: "default" }} id="gheading2">
                   1 VEHICLE REPORT
@@ -51,7 +53,7 @@ function Pricing() {
                   <p>Accident Information</p>
                 </div>
                 <a
-                  href="/Signupform"
+                  href="/"
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   // type="button"
@@ -91,12 +93,13 @@ function Pricing() {
                   <p>Accident Information</p>
                 </div>
                 <a
-                  href="Signupform"
+                  href="/"
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
-                  type="button"
-                  data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  onClick={alerts}
+                  // type="button"
+                  // data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >
                   Sign Up
                 </a>
@@ -132,12 +135,12 @@ function Pricing() {
                   <p>Accident Information</p>
                 </div>
                 <a
-                  href="Signupform"
+                  href="/"
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
-                  type="button"
-                  data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  // type="button"
+                  // data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >
                   Sign Up
                 </a>
@@ -185,12 +188,12 @@ function Pricing() {
                   <p>Accident Information</p>
                 </div>
                 <a
-                  href="Signupform"
+                  href="/"
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
-                  type="button"
-                  data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  // type="button"
+                  // data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >
                   Sign Up
                 </a>
@@ -224,12 +227,12 @@ function Pricing() {
                   <p>Accident Information</p>
                 </div>
                 <a
-                  href="Signupform"
+                  href="/"
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
-                  type="button"
-                  data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  // type="button"
+                  // data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >
                   Sign Up
                 </a>
@@ -265,12 +268,12 @@ function Pricing() {
                   <p>Accident Information</p>
                 </div>
                 <a
-                  href="Signupform"
+                  href="/"
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
-                  type="button"
-                  data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  // type="button"
+                  // data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >
                   Sign Up
                 </a>

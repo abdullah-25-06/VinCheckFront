@@ -43,9 +43,18 @@ function Loginform() {
       <div className=" login">
         <div className="navhead">
           <div className="title">
-            <NavLink className="nav-link" to="/" style={{ color: "white" }}>
-              <p>Vincheck Central</p>
-            </NavLink>
+          <NavLink
+                className="navbar-brand"
+                id="brandname"
+                to="/"
+                data-aos="flip-left"
+                data-aos-anchor="#example-anchor"
+                data-aos-offset="500"
+                data-aos-duration="500"
+                data-aos-delay="500"
+              >
+                <img src="wlogo.png" alt="" id="wlogo" style={{marginLeft:'10px',width: "180px"}} />
+              </NavLink>
           </div>
           <NavLink className="nav-link" to="/Signupform">
             <div className="log">

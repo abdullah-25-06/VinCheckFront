@@ -231,9 +231,14 @@ function Details() {
               </div>
               <div className="searchbtn">
                 <div className="parabutton ">
+                  <a href="/Sample" style={{textDecoration:'none'}}>
+
                   <button id="pbtn" className="mb-4 ">
+                    
+                  
                     <span>SAMPLE REPORT</span>
                   </button>
+                  </a>
                 </div>
               </div>
             </div>

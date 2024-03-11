@@ -329,7 +329,7 @@ ul li {
 #home3 {
   font-size: 1rem;
   /* font-family: 'Montserrat', sans-serif; */
-  color: black;
+  color: white;
   /* color: white; */
   /* width: 120%; */
 }
@@ -338,7 +338,7 @@ ul li {
 #home1:hover,
 #home2:hover,
 #home3:hover {
-  color: white;
+  color: white!important;
   border-radius: 3px;
   /* width: 100%; */
   background: rgb(22, 110, 28);
