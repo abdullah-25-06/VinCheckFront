@@ -102,44 +102,7 @@ function Dashboard() {
               <div className="reqbox">
                 <div class="row mb-4">
                   <div className="reqbox2">
-                    {/* <div class="col-md-4">
-                      <div data-mdb-input-init class="form-outline">
-                        <label
-                          class="form-label"
-                          for="form3Example1"
-                          id="reqlabel"
-                        >
-                          {" "}
-                          PayPal Account ID
-                        </label>
-                        <input
-                          type="text"
-                          id="form3Example1"
-                          class="form-control"
-                          placeholder="Ex: Z5H7DMJMUY863"
-                          ref={a_id}
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-5">
-                      <div data-mdb-input-init class="form-outline">
-                        <label
-                          class="form-label"
-                          for="form3Example2"
-                          id="reqlabel"
-                        >
-                          Transaction ID
-                        </label>
-                        <input
-                          type="text"
-                          id="form3Example1"
-                          class="form-control"
-                          placeholder="Transaction id"
-                          ref={t_id}
-                        />
-                      </div>
-                      
-                    </div> */}
+                    
                     <div
                       className="pt-3"
                       style={{ display: "flex", justifyContent: "center",gap:'10px' }}
