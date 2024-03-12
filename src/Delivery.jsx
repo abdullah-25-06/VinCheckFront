@@ -12,9 +12,17 @@ function Delivery() {
     useEffect(() => {
         Aos.init();
     }, [])
+    const scroll = () => {
 
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+        
+      }
+    
     return (
         <>
+              <a id="topbutton" onClick={scroll}></a>
+
             <div className="navhead container">
                 <span className="items col-md-11 mx-auto container" >
 

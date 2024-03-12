@@ -58,10 +58,13 @@ function Pricing() {
                   id="goldbtn"
                   // type="button"
                   // data-bs-toggle="modal" data-bs-target="#exampleModal"
-                  style={{ whiteSpace: "nowrap" }
+                  style={{ whiteSpace: "nowrap" }}
+                  onClick={alerts}
+              
+                  
 
 
-                  }
+                  
                 >
                   Sign Up
                 </a>
@@ -139,6 +142,7 @@ function Pricing() {
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
+                  onClick={alerts}
                   // type="button"
                   // data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >
@@ -192,6 +196,7 @@ function Pricing() {
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
+                  onClick={alerts}
                   // type="button"
                   // data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >
@@ -231,6 +236,7 @@ function Pricing() {
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
+                  onClick={alerts}
                   // type="button"
                   // data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >
@@ -272,6 +278,7 @@ function Pricing() {
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
+                  onClick={alerts}
                   // type="button"
                   // data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >

@@ -75,9 +75,18 @@ function Paypal(props) {
 
     return data;
   };
+  const scroll = () => {
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    
+  }
+
   return (
-    <>
+    
       <>
+            <a id="topbutton" onClick={scroll}></a>
+
         <div className=" login">
           <div className="navhead">
             <div className="title">
@@ -108,12 +117,11 @@ function Paypal(props) {
           <div className=" logform2 mt-1">
             <div className="formbox2">
               <form className="fform">
-                <h3 className="pt-2">Checkout Form</h3>
+                <h3 className="pt-2">Checkout</h3>
                 <hr />
                 <div className="formbody2">
                   <div className="ftitle">
                     <p className="frs">Username</p>
-                    {/* Is m nchy */}
                     <p className="fls">{ctx.username}</p>
                   </div>
                   <div className="ftitle">
@@ -151,7 +159,7 @@ function Paypal(props) {
           </div>
         </div>
       </>
-    </>
+    
   );
 }
 

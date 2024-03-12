@@ -62,8 +62,17 @@ function Dashboard() {
       alert(error.response.data.msg);
     }
   };
+  const scroll = () => {
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    
+  }
+
   return (
     <>
+          <a id="topbutton" onClick={scroll}></a>
+
       <div className="dashboard">
         <div className="head">
           <div className="navhead">
@@ -104,7 +113,7 @@ function Dashboard() {
                   <div className="reqbox2">
                     
                     <div
-                      className="pt-3"
+                      className=""
                       style={{ display: "flex", justifyContent: "center",gap:'10px' }}
                     >
                       <div class="col">

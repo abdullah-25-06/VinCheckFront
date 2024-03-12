@@ -71,10 +71,10 @@ function Footer() {
                             {/* <!-- Grid column --> */}
                             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                                 {/* <!-- Links --> */}
-                                <h6 className="text-uppercase fw-bold mb-4" id='fotcon' >Contact</h6>
-                                <p id="textdec"><i className="fas fa-home me-3"></i> Info@vincheckcentral.com</p>
+                                <h6 className="text-uppercase fw-bold mb-4"  >Contact</h6>
+                                <p id="textdec"> Info@vincheckcentral.com</p>
                                 
-                                <p><i className="fas fa-phone me-3"></i> +1 801 697 6810</p>
+                                <p> +1 801 697 6810</p>
                                 {/* <p><i className="fas fa-print me-3"></i> +9231-12345678</p> */}
                             </div>
                             {/* <!-- Grid column --> */}

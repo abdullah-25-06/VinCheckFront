@@ -16,9 +16,18 @@ function Pricing2() {
     useEffect(() => {
         Aos.init();
     }, [])
+    const scroll = () => {
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+        
+      }
+    
 
     return (
         <>
+              <a id="topbutton" onClick={scroll} ></a>
+
             <div className="navhead container">
                 <span className="items col-md-11 mx-auto container" >
 
@@ -95,7 +104,7 @@ function Pricing2() {
                 </div>
             </div>
             <div className="pdfhead">
-                <div className="pdf mb-5 " style={{
+                <div className="pdf mb-5 pt-3" style={{
                     height: '650px',
                     
                 }}>

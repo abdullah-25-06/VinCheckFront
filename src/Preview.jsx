@@ -138,7 +138,7 @@ function Preview() {
   }, [detail]);
 
   const btnHandler = async () => {
-    
+
     if (counter < 0) {
       counter++;
     } else {
@@ -179,9 +179,18 @@ function Preview() {
   const backBtn = () => {
     navigate("/dashboard");
   };
+  const scroll = () => {
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    
+  }
+
   var counter = 0;
   return (
     <React.Fragment>
+      <a id="topbutton" onClick={scroll}></a>
+
       <div className="col-xxl-11 mx-auto sign">
         <div className="stable mt-1">
           <h3> Vechicle Information</h3>
@@ -236,15 +245,17 @@ function Preview() {
               <div>
                 <div data-mdb-input-init class="form-outline mb-3">
                   <label class="form-label" for="form4Example1">
-                    Package
+                    Packages
+                    <img src="select.png" alt="" style={{marginLeft:'3px'}} />
                   </label>
                   <select
                     class="form-control"
                     name="package"
                     onChange={selectHandler}
                     required
-                    style={{width:'300px'}}
-                  >
+                    style={{ width: '300px' }}
+                    >
+                    {/* <img src="select.png"></img> */}
                     {data}
                   </select>
                 </div>
@@ -337,7 +348,10 @@ function Preview() {
               </div>
               <div data-mdb-input-init class="form-outline mb-2">
                 <label class="form-label" for="form4Example1">
-                  Package
+
+                  Packages
+                  
+                  <img src="select.png" alt="" style={{marginLeft:'3px'}} />
                 </label>
                 <select
                   class="form-control"

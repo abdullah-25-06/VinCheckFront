@@ -15,7 +15,7 @@ function Faqs() {
             <span class="icon"></span>What is a Vehicle History Report?
           </label>
           <div class="accordion-item-desc">
-            Vincheck Central provides factual and truthful information about a
+            Vin Check Central provides factual and truthful information about a
             vehicle. We help customers make an informed decision about a car
             they may be thinking of buying. It is extremely helpful when
             purchasing a used car to give a complete overview of the life of the
@@ -35,7 +35,7 @@ function Faqs() {
             Vehicle history reports are available to potential buyers and anyone
             who is interested in the history of the vehicle. The best way to
             know if a car will be a good buy is to look at
-            https://digitalvinautomation.com. It will alert you to any issues
+           Vin Check Central, It will alert you to any issues
             the vehicle may have had in the past or accidents that may cause
             recurring issues. VIN report also helpful when selling your vehicle
             as it shows the current information providing proof of a sound
@@ -83,12 +83,12 @@ function Faqs() {
         <div class="accordion-item">
           <input type="checkbox" id="accordion5"></input>
           <label for="accordion5" class="accordion-item-title">
-            <span class="icon"></span>Do Digital VIN Automation reports provide
+            <span class="icon"></span>Do Vin Check Central reports provide
             information on every vehicle?
           </label>
           <div class="accordion-item-desc">
-            Digital VIN Automation collects a vast amount of data on more than
-            350 million VIN records. Digital VIN Automation covers a majority of
+          Vin Check Central collects a vast amount of data on more than
+            350 million VIN records. Vin Check Central covers a majority of
             the vehicles registered in the U.S. These reports include data from
             1981 on all cars and trucks since that date. Having these reports
             reduces the chance that you will buy a car with problems or defects.

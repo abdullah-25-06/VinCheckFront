@@ -54,8 +54,17 @@ function Loginform() {
       alert(err.response.data.message);
     }
   };
+  const scroll = () => {
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    
+  }
+  
   return (
     <>
+          <a id="topbutton" onClick={scroll}></a>
+
       <div className="dashboard">
         <div className="head">
           <div className="navhead">
@@ -88,10 +97,10 @@ function Loginform() {
         </div>
         <div className="dbody">
           <Sidebar />
-          <div className="reqform">
+          <div className="reqform" >
             <h1 style={{ color: "white" }}>Account Information</h1>
             <div className="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-9 mx-auto mainre2 mt-4">
-              <div className="reqbox">
+              <div className="reqbox" style={{padding:'15px 0px 15px 25px'}}>
                 <div class="row ">
                   <div
                     className="pt-2 pb-1"

@@ -20,9 +20,10 @@ function Sidebar() {
             <header class="sidebar-header"></header>
 
             <nav class="sidebar-menu">
-              <span style={{ fontSize: "19px"}} id="cname"  >
-                {ctx.username}
-              </span>
+              <div style={{ fontSize: "17px"}} id="cname"  >
+                <p style={{marginBottom:'1px'}}>{ctx.username}</p>
+                <p style={{ fontSize: "15px"}}><b>Client</b></p>
+                </div>
               <hr />
 
               <p

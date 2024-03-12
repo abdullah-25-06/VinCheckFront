@@ -37,40 +37,42 @@ function Loginform() {
     alert(val.msg);
     navigate("/Dashboard");
   };
-  var counter=0;
+  const scroll = () => {
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    
+  }
+
+  var counter = 0;
   return (
     <>
+      <a id="topbutton" onClick={scroll}></a>
+
       <div className=" login">
         <div className="navhead">
           <div className="title">
-          <NavLink
-                className="navbar-brand"
-                id="brandname"
-                to="/"
-                data-aos="flip-left"
-                data-aos-anchor="#example-anchor"
-                data-aos-offset="500"
-                data-aos-duration="500"
-                data-aos-delay="500"
-              >
-                <img src="wlogo.png" alt="" id="wlogo" style={{marginLeft:'10px',width: "180px"}} />
-              </NavLink>
+            <NavLink
+              className="navbar-brand"
+              id="brandname"
+              to="/"
+              data-aos="flip-left"
+              data-aos-anchor="#example-anchor"
+              data-aos-offset="500"
+              data-aos-duration="500"
+              data-aos-delay="500"
+            >
+              <img src="wlogo.png" alt="" id="wlogo" style={{ marginLeft: '30px', width: "180px" }} />
+            </NavLink>
           </div>
-          <NavLink className="nav-link" to="/Signupform">
-            <div className="log">
-              <p style={{ color: "white" }}>Sign up</p>
-
-              {/* <NavLink className="nav-link" to='/'><p></p></NavLink> */}
-            </div>
-          </NavLink>
         </div>
         <div className="nborder"></div>
 
         <div className="logform">
           <div className="formbox">
             <form onSubmit={FormHandle}>
-              <h1 className="pb-3">Login Form</h1>
-              <p>Email Adress</p>
+              <h1 className="pb-3">Login</h1>
+              <p>Email Address</p>
               <MDBInput
                 className="mb-3"
                 type="email"
@@ -81,7 +83,7 @@ function Loginform() {
               <MDBInput
                 className="mb-3"
                 type="password"
-                id="form1Example2"
+                id="form1Example1"
                 ref={password}
               />
 

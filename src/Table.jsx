@@ -9,7 +9,7 @@ export default function Table() {
             <MDBTableHead>
                 <tr className='table-info'>
                     <th scope='col' className='thead' >Report Contents</th>
-                    <th className='text-center thead' scope='col' style={{ whiteSpace: 'nowrap' }} >Vincheck Central</th>
+                    <th className='text-center thead' scope='col' style={{ whiteSpace: 'nowrap' }} >Vin Check Central</th>
                     <th scope='col' className='text-center thead' >CarFax</th>
                     <th scope='col' className='text-center thead' >AutoCheck</th>
                     <th scope='col' className='text-center thead'>InstaVIN</th>

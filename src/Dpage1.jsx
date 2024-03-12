@@ -267,9 +267,18 @@ function Dpage1(props) {
   //     alert(err.response.data.msg);
   //   }
   // };
+  const scroll = () => {
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    
+  }
+
 
   return (
     <>
+          <a id="topbutton" onClick={scroll}></a>
+
       <div className="dashboard">
         <div className="head">
           <div className="navhead">
@@ -284,7 +293,7 @@ function Dpage1(props) {
                 data-aos-duration="500"
                 data-aos-delay="500"
               >
-                <img src="glogo.png" alt="" id="wlogo" style={{marginLeft:'10px',width: "180px",marginBottom:'15px'}} />
+                <img src="glogo.png" alt="" id="wlogo" style={{ marginLeft: '10px', width: "180px", marginBottom: '15px' }} />
               </NavLink>
             </div>
             <a
@@ -333,13 +342,6 @@ function Dpage1(props) {
               >
                 Check Vehicle Details
               </button>
-              {/* <button
-                class="btn btn-success mt-2"
-                style={{ marginLeft: "3px", border: "none" }}
-                onClick={payHandler}
-              >
-                Payment
-              </button> */}
             </div>
             <div className="dform1 mt-1" id="sectable">
               <div className="tablecontainer" style={{ height: "20vh" }}>
@@ -367,18 +369,40 @@ function Dpage1(props) {
             </div>
           </div>
           <div className="col-xxl-6 col-xl-6  col-lg-7 col-md-12 dcol3">
-            <div class="card">
+            <div class="card" id="dpage1table">
               <div class="header">
                 <div className="headerhead">
+                  <div className="headerhead2">
+                    <h2>All Reports</h2>
+                    {/* <div style={{display:"flex",gap:'10px'}}>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
+                        <p style={{fontSize:'13px'}}>ALL</p>
+                         
+                      </div>
+                    </div> */}
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input " type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                      <label class="form-check-label" for="inlineRadio1" style={{ fontSize: '13px' }}>All</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                      <label class="form-check-label" for="inlineRadio2" style={{ fontSize: '13px' }}>Pending</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" />
+                      <label class="form-check-label" for="inlineRadio3" style={{ fontSize: '13px' }}>Delivered </label>
+                    </div>
+                  </div>
+                  <div style={{display:"flex",flexDirection:'column',padding:'0px',margin:'0px',gpa:'0px'}}>
 
-
-                  <h2>All Reports</h2>
-                  <input
-                    type="search"
-                    placeholder=" Search VIN..."
-                    id="tsearch"
-                  // onClick={(e) => setQuery(e.target.value)}
-                  />
+                    <p style={{ fontSize: '13px',marginBottom:'2px', textAlign:'end' }}>Total Reports:10</p>
+                    <input
+                      type="search"
+                      placeholder=" Search VIN..."
+                      id="tsearch"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="tablecontainer">

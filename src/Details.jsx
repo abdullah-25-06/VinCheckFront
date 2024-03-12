@@ -3,6 +3,7 @@ import React from "react";
 function Details() {
   return (
     <>
+
       <div className="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-10 mx-auto details pt-4">
         {/* data-aos="fade-right" */}
         <div className="detailtext" data-aos-offset="10" data-aos="fade-right">
@@ -79,7 +80,7 @@ function Details() {
                         An accident record identifies car accidents both small
                         and large usually in cases where there is a police
                         report accompanying the accident event. Note that, like
-                        other car history providers and <b>Vincheckcentral</b>{" "}
+                        other car history providers and <b>Vin Check Central</b>{" "}
                         covers risks from a combination of police departments,
                         state agencies, and industry sources.
                       </span>
@@ -144,7 +145,7 @@ function Details() {
                     <div className="boxbottom">
                       <img src="tick.png" alt="" />
                       <span className="tooltip" id="tooltext">
-                        A recall is issued when a manufacturer/NHTSA determines
+                        A recall is issued when manufacturer/NHTSA determines
                         that a vehicle, equipment, car seat, or tire creates an{" "}
                         <b>
                           unreasonable safety risk or fails to meet minimum
