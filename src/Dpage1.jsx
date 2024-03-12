@@ -528,7 +528,7 @@ function Dpage1(props) {
                         textAlign: "end",
                       }}
                     >
-                      Total Reports:10
+                      Total Reports:{dataArray.length}
                     </p>
                     <input
                       type="search"
