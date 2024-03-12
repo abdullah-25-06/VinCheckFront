@@ -243,6 +243,65 @@ function Dpage1(props) {
       alert(err.message);
     }
   };
+  const pendingHandler = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_DEVELOPMENT_URL}/pending`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            auth_token: localStorage.getItem("token")
+              ? `bearer ${localStorage.getItem("token")}`
+              : "",
+          },
+        }
+      );
+      setDataArray(data.getreports);
+    } catch (err) {
+      console.log(err);
+      alert(err.message);
+    }
+  };
+  const submitHandler = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_DEVELOPMENT_URL}/submit`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            auth_token: localStorage.getItem("token")
+              ? `bearer ${localStorage.getItem("token")}`
+              : "",
+          },
+        }
+      );
+      setDataArray(data.getreports);
+    } catch (err) {
+      console.log(err);
+      alert(err.message);
+    }
+  };
+
+  const allHandler = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_DEVELOPMENT_URL}/report`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            auth_token: localStorage.getItem("token")
+              ? `bearer ${localStorage.getItem("token")}`
+              : "",
+          },
+        }
+      );
+      setDataArray(data.getreports);
+    } catch (err) {
+      console.log(err);
+      alert(err.message);
+    }
+  };
+
   // const payHandler = async () => {
   //   try {
   //     await axios.get(`${process.env.REACT_APP_DEVELOPMENT_URL}/check`, {
@@ -268,16 +327,14 @@ function Dpage1(props) {
   //   }
   // };
   const scroll = () => {
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    
-  }
-
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
-          <a id="topbutton" onClick={scroll}></a>
+      <a id="topbutton" onClick={scroll} href=" ">
+        {""}
+      </a>
 
       <div className="dashboard">
         <div className="head">
@@ -293,8 +350,6 @@ function Dpage1(props) {
                 data-aos-duration="500"
                 data-aos-delay="500"
               >
-
-                <img src="glogo.png" alt="" id="wlogo" style={{ marginLeft: '10px', width: "180px", marginBottom: '15px' }} />
                 <img
                   src="glogo.png"
                   alt=""
@@ -305,7 +360,16 @@ function Dpage1(props) {
                     marginBottom: "15px",
                   }}
                 />
-
+                <img
+                  src="glogo.png"
+                  alt=""
+                  id="wlogo"
+                  style={{
+                    marginLeft: "10px",
+                    width: "180px",
+                    marginBottom: "15px",
+                  }}
+                />
               </NavLink>
             </div>
             <a
@@ -377,12 +441,8 @@ function Dpage1(props) {
                   </thead>
                   <tbody>{transaction && transData}</tbody>
                 </table>
-                {transaction ? (
-                  null
-                ) : (
-                  <h6 style={{ textAlign: "center" }}>
-                    No Transactions
-                  </h6>
+                {transaction ? null : (
+                  <h6 style={{ textAlign: "center" }}>No Transactions</h6>
                 )}
               </div>
             </div>
@@ -391,46 +451,91 @@ function Dpage1(props) {
             <div class="card" id="dpage1table">
               <div class="header">
                 <div className="headerhead">
-
                   <div className="headerhead2">
                     <h2>All Reports</h2>
-                    {/* <div style={{display:"flex",gap:'10px'}}>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-                        <p style={{fontSize:'13px'}}>ALL</p>
-                         
-                      </div>
-                    </div> */}
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input " type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
-                      <label class="form-check-label" for="inlineRadio1" style={{ fontSize: '13px' }}>All</label>
+
+                    <div
+                      class="form-check form-check-inline"
+                      onClick={allHandler}
+                    >
+                      <input
+                        class="form-check-input "
+                        type="radio"
+                        name="inlineRadioOptions"
+                        id="inlineRadio1"
+                        value="option1"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="inlineRadio1"
+                        style={{ fontSize: "13px" }}
+                      >
+                        All
+                      </label>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
-                      <label class="form-check-label" for="inlineRadio2" style={{ fontSize: '13px' }}>Pending</label>
+                    <div
+                      class="form-check form-check-inline"
+                      onClick={pendingHandler}
+                    >
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions"
+                        id="inlineRadio2"
+                        value="option2"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="inlineRadio2"
+                        style={{ fontSize: "13px" }}
+                      >
+                        Pending
+                      </label>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" />
-                      <label class="form-check-label" for="inlineRadio3" style={{ fontSize: '13px' }}>Delivered </label>
+                    <div
+                      class="form-check form-check-inline"
+                      onClick={submitHandler}
+                    >
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions"
+                        id="inlineRadio3"
+                        value="option3"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="inlineRadio3"
+                        style={{ fontSize: "13px" }}
+                      >
+                        Delivered{" "}
+                      </label>
                     </div>
                   </div>
-                  <div style={{display:"flex",flexDirection:'column',padding:'0px',margin:'0px',gpa:'0px'}}>
-
-                    <p style={{ fontSize: '13px',marginBottom:'2px', textAlign:'end' }}>Total Reports:10</p>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: "0px",
+                      margin: "0px",
+                      gpa: "0px",
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontSize: "13px",
+                        marginBottom: "2px",
+                        textAlign: "end",
+                      }}
+                    >
+                      Total Reports:10
+                    </p>
                     <input
                       type="search"
                       placeholder=" Search VIN..."
                       id="tsearch"
                     />
                   </div>
-                  <h2>All Reports</h2>
-                  <input
-                    type="search"
-                    placeholder=" Search VIN..."
-                    id="tsearch"
-                    // onClick={(e) => setQuery(e.target.value)}
-                  />
-
                 </div>
               </div>
               <div className="tablecontainer">

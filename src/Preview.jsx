@@ -189,7 +189,7 @@ function Preview() {
   var counter = 0;
   return (
     <React.Fragment>
-      <a id="topbutton" onClick={scroll}></a>
+      <a id="topbutton" onClick={scroll} href=' '>{""}</a>
 
       <div className="col-xxl-11 mx-auto sign">
         <div className="stable mt-1">

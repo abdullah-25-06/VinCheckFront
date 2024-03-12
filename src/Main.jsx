@@ -16,7 +16,7 @@ function Main() {
     Aos.init();
   }, []);
   // Get reference to the button element
-  let btn = document.getElementById('topbutton');
+  // let btn = document.getElementById('topbutton');
 
 
 
@@ -34,7 +34,7 @@ function Main() {
     <>
       <Navbar />
 
-      <a id="topbutton" onClick={scroll}></a>
+      <a id="topbutton" onClick={scroll} href=' '>{""}</a>
       <div className="hero col-xxl-12 col-md-12 col-sm-12 mx-auto">
         <div className="wrapper col-xxl-11 col-xl-11 col-sm-10 mx-auto">
           <div className="col-xxl-6 col-xl-7 col-lg-7 col-md-10 col-sm-5 col1">

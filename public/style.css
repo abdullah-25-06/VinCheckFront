@@ -11,8 +11,11 @@
   padding: 0;
   box-sizing: border-box;
   /* user-select: none; */
-}
 
+}
+a{
+  text-decoration: none !important ;
+}
 input,select{
   border:1px solid var(--defautcolor) !important;
 }

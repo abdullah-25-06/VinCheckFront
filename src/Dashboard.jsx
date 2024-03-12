@@ -81,15 +81,14 @@ function Dashboard() {
     }
   };
   const scroll = () => {
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
-          <a id="topbutton" onClick={scroll}></a>
+      <a id="topbutton" onClick={scroll} href=" ">
+        {""}
+      </a>
 
       <div className="dashboard">
         <div className="head">
@@ -139,16 +138,12 @@ function Dashboard() {
                 <div class="row mb-4">
                   <div className="reqbox2">
                     <div
-
-                      className=""
-                      style={{ display: "flex", justifyContent: "center",gap:'10px' }}
-                      className="pt-3"
                       style={{
                         display: "flex",
                         justifyContent: "center",
                         gap: "10px",
                       }}
-
+                      className="pt-3"
                     >
                       <div class="col">
                         <div data-mdb-input-init class="form-outline">
