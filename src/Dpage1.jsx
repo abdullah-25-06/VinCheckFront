@@ -16,7 +16,7 @@ function Dpage1(props) {
   const [isLoading, setIsLoading] = useState(true);
   // const [setQuery] = useState("");
   const [isData, setIsData] = useState(null);
-  const [transaction, SetTransactions] = useState([]);
+  const [transaction, SetTransactions] = useState(null);
   const inp = useRef("");
   // const selectHandler = (e) => {
   //   if (0 <= e.target.value <= d_ctx.data.length - 1) {
@@ -72,7 +72,7 @@ function Dpage1(props) {
             },
           }
         );
-        console.log();
+
         SetTransactions(data.transactionData);
       } catch (error) {
         if (error.response?.status === 401) {
@@ -92,7 +92,7 @@ function Dpage1(props) {
     trans();
     api();
 
-    return () => { };
+    return () => {};
   }, [d_ctx, ctx, navigate, SetTransactions]);
 
   // const data = d_ctx?.data.map((data, index) => {
@@ -142,59 +142,59 @@ function Dpage1(props) {
   const row =
     dataArray.length >= 1
       ? dataArray?.map((elem, index) => {
-        return (
-          <tr key={index}>
-            <td colSpan="1" id="colborder">
-              {index + 1}
-            </td>
+          return (
+            <tr key={index}>
+              <td colSpan="1" id="colborder">
+                {index + 1}
+              </td>
 
-            <td colSpan="1" id="colborder">
-              {elem.vin}
-            </td>
-            <td
-              colSpan="1"
-              id="colborder"
-              style={{ whiteSpace: "wrap", wordBreak: "break-all" }}
-            >
-              {elem.email}
-            </td>
-            <td colSpan="1" id="colborder">
-              {elem.pending ? "pending" : "delivered"}
-            </td>
-            <td
-              colSpan="1"
-              id="colborder"
-              style={{ whiteSpace: "wrap", wordBreak: "break-all" }}
-            >
-              {moment(elem.createdAt).format("DD MMMM YYYY, HH:mm:ss")}
-            </td>
-            {localStorage.getItem("admin") ? (
-              <td colSpan="1" id="lastcol">
-                Submit
-                <button
-                  class="btn btn-success mt-2"
-                  style={{ fontSize: "13px" }}
-                  onClick={() => {
-                    checkHandler(index);
-                  }}
-                >
+              <td colSpan="1" id="colborder">
+                {elem.vin}
+              </td>
+              <td
+                colSpan="1"
+                id="colborder"
+                style={{ whiteSpace: "wrap", wordBreak: "break-all" }}
+              >
+                {elem.email}
+              </td>
+              <td colSpan="1" id="colborder">
+                {elem.pending ? "pending" : "delivered"}
+              </td>
+              <td
+                colSpan="1"
+                id="colborder"
+                style={{ whiteSpace: "wrap", wordBreak: "break-all" }}
+              >
+                {moment(elem.createdAt).format("DD MMMM YYYY, HH:mm:ss")}
+              </td>
+              {localStorage.getItem("admin") ? (
+                <td colSpan="1" id="lastcol">
                   Submit
-                </button>
-              </td>
-            ) : (
-              <td colSpan="1" id="lastcol">
-                View Report
-                <button
-                  class="btn btn-success mt-2"
-                  style={{ fontSize: "13px" }}
-                >
+                  <button
+                    class="btn btn-success mt-2"
+                    style={{ fontSize: "13px" }}
+                    onClick={() => {
+                      checkHandler(index);
+                    }}
+                  >
+                    Submit
+                  </button>
+                </td>
+              ) : (
+                <td colSpan="1" id="lastcol">
                   View Report
-                </button>
-              </td>
-            )}
-          </tr>
-        );
-      })
+                  <button
+                    class="btn btn-success mt-2"
+                    style={{ fontSize: "13px" }}
+                  >
+                    View Report
+                  </button>
+                </td>
+              )}
+            </tr>
+          );
+        })
       : "";
   const btnHandler = async () => {
     const val = inp.current.value;
@@ -236,9 +236,9 @@ function Dpage1(props) {
           },
         }
       );
-      setDataArray((prevPosts) =>
-        prevPosts.filter((post) => post._id !== dataSample._id)
-      );
+      // setDataArray((prevPosts) =>
+      //   prevPosts.filter((post) => post._id !== dataSample._id)
+      // );
     } catch (err) {
       alert(err.message);
     }
@@ -284,7 +284,16 @@ function Dpage1(props) {
                 data-aos-duration="500"
                 data-aos-delay="500"
               >
-                <img src="glogo.png" alt="" id="wlogo" style={{marginLeft:'10px',width: "180px",marginBottom:'15px'}} />
+                <img
+                  src="glogo.png"
+                  alt=""
+                  id="wlogo"
+                  style={{
+                    marginLeft: "10px",
+                    width: "180px",
+                    marginBottom: "15px",
+                  }}
+                />
               </NavLink>
             </div>
             <a
@@ -361,8 +370,15 @@ function Dpage1(props) {
                       </th>
                     </tr>
                   </thead>
-                  <tbody>{transData}</tbody>
+                  <tbody>{transaction && transData}</tbody>
                 </table>
+                {transaction ? (
+                  null
+                ) : (
+                  <h6 style={{ textAlign: "center" }}>
+                    No Transactions
+                  </h6>
+                )}
               </div>
             </div>
           </div>
@@ -370,14 +386,12 @@ function Dpage1(props) {
             <div class="card">
               <div class="header">
                 <div className="headerhead">
-
-
                   <h2>All Reports</h2>
                   <input
                     type="search"
                     placeholder=" Search VIN..."
                     id="tsearch"
-                  // onClick={(e) => setQuery(e.target.value)}
+                    // onClick={(e) => setQuery(e.target.value)}
                   />
                 </div>
               </div>
