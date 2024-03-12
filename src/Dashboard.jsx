@@ -3,12 +3,16 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Canvas from "./Canvas";
 import axios from "axios";
-
 import AuthContext from "./context/auth";
+
 function Dashboard() {
   const ctx = useContext(AuthContext);
   var counter = 0;
   const a_id = useRef("");
+  const number = useRef("");
+  const name = useRef("");
+  const email = useRef("");
+  const city = useRef("");
   const t_id = useRef("");
   const reasons = useRef("");
   const navigate = useNavigate();
@@ -21,7 +25,17 @@ function Dashboard() {
     const account_id = a_id.current.value;
     const transaction_id = t_id.current.value;
     const reason = reasons.current.value;
-    if (!account_id || !transaction_id || !reason) {
+    const number_ref = number.current.value;
+    const name_ref = name.current.value;
+    const email_ref = email.current.value;
+    if (
+      !account_id ||
+      !transaction_id ||
+      !reason ||
+      !number_ref ||
+      !email_ref ||
+      !name_ref
+    ) {
       document.getElementById("loginbtn").disabled = false;
       return alert("Please fill your fields");
     }
@@ -32,6 +46,9 @@ function Dashboard() {
           account_id,
           transaction_id,
           reason,
+          number_ref,
+          email_ref,
+          name_ref,
         },
         {
           headers: {
@@ -44,7 +61,8 @@ function Dashboard() {
       );
       document.getElementById("loginbtn").disabled = false;
       ctx.updateCount(data.user);
-      alert(data.msg);
+
+      return alert(data.msg);
     } catch (error) {
       document.getElementById("loginbtn").disabled = false;
       if (error.response?.status === 401) {
@@ -77,7 +95,7 @@ function Dashboard() {
         <div className="head">
           <div className="navhead">
             <div className="title">
-            <NavLink
+              <NavLink
                 className="navbar-brand"
                 id="brandname"
                 to="/"
@@ -87,7 +105,16 @@ function Dashboard() {
                 data-aos-duration="500"
                 data-aos-delay="500"
               >
-                <img src="glogo.png" alt="" id="wlogo" style={{marginLeft:'10px',width: "180px",marginBottom:'15px'}} />
+                <img
+                  src="glogo.png"
+                  alt=""
+                  id="wlogo"
+                  style={{
+                    marginLeft: "10px",
+                    width: "180px",
+                    marginBottom: "15px",
+                  }}
+                />
               </NavLink>
             </div>
             <a
@@ -111,10 +138,17 @@ function Dashboard() {
               <div className="reqbox">
                 <div class="row mb-4">
                   <div className="reqbox2">
-                    
                     <div
+
                       className=""
                       style={{ display: "flex", justifyContent: "center",gap:'10px' }}
+                      className="pt-3"
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: "10px",
+                      }}
+
                     >
                       <div class="col">
                         <div data-mdb-input-init class="form-outline">
@@ -123,7 +157,6 @@ function Dashboard() {
                             for="form3Example1"
                             id="reqlabel"
                           >
-                            {" "}
                             Fullname
                           </label>
                           <input
@@ -131,8 +164,7 @@ function Dashboard() {
                             id="form3Example1"
                             class="form-control"
                             placeholder="Full name"
-                            // style={{width:'100px'}}
-                          // ref={old_password}
+                            ref={name}
                           />
                         </div>
                       </div>
@@ -143,7 +175,6 @@ function Dashboard() {
                             for="form3Example1"
                             id="reqlabel"
                           >
-                            {" "}
                             Email Address
                           </label>
                           <input
@@ -151,21 +182,20 @@ function Dashboard() {
                             id="form3Example"
                             class="form-control"
                             placeholder="Email Address"
-                          // ref={new_password}
+                            ref={email}
                           />
                         </div>
                       </div>
                     </div>
-
                   </div>
                   <div
                     className="pt-2"
-                    style={{ display: "flex", justifyContent: "center",gap:'10px'  }}
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: "10px",
+                    }}
                   >
-
-
-
-
                     <div class="col">
                       <div data-mdb-input-init class="form-outline">
                         <label
@@ -173,7 +203,6 @@ function Dashboard() {
                           for="form3Example1"
                           id="reqlabel"
                         >
-                          {" "}
                           Phone number
                         </label>
                         <input
@@ -181,7 +210,7 @@ function Dashboard() {
                           id="form3Example1"
                           class="form-control"
                           placeholder="Phone number "
-                          ref={a_id}
+                          ref={number}
                         />
                       </div>
                     </div>
@@ -192,7 +221,6 @@ function Dashboard() {
                           for="form3Example1"
                           id="reqlabel"
                         >
-                          {" "}
                           City
                         </label>
                         <input
@@ -200,21 +228,19 @@ function Dashboard() {
                           id="form3Example"
                           class="form-control"
                           placeholder="City"
-                          ref={t_id}
+                          ref={city}
                         />
                       </div>
                     </div>
-
-
-
-
-
                   </div>
                   <div
                     className="pt-2"
-                    style={{ display: "flex", justifyContent: "center",gap:'10px'  }}
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: "10px",
+                    }}
                   >
-
                     <div class="col">
                       <div data-mdb-input-init class="form-outline">
                         <label
@@ -222,7 +248,6 @@ function Dashboard() {
                           for="form3Example1"
                           id="reqlabel"
                         >
-                          {" "}
                           PayPal Account ID
                         </label>
                         <input
@@ -241,7 +266,6 @@ function Dashboard() {
                           for="form3Example1"
                           id="reqlabel"
                         >
-                          {" "}
                           Transaction ID
                         </label>
                         <input
@@ -253,9 +277,6 @@ function Dashboard() {
                         />
                       </div>
                     </div>
-
-
-
                   </div>
                   <div className="pt-2">
                     <label for="exampleFormControlTextarea1" class="form-label">
