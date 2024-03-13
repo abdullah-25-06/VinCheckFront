@@ -6,15 +6,14 @@ import Dpage1 from "./Dpage1";
 import Profile from "./Profile";
 import Paypal from "./PayPal";
 import Preview from "./Preview";
-// import Signupform from "./Signupform";
+
 import Pricing2 from "./Pricing2";
 import Delivery from "./Delivery";
 import PP from "./Privacy";
 import Terms from "./Terms";
 import Newpage from "./Newpage";
-// import Modal from "./Modal";
-import PrivaateRoutes from './PrivaateRoutes'
 
+import PrivaateRoutes from "./PrivaateRoutes";
 
 function App() {
   return (
@@ -29,7 +28,7 @@ function App() {
           <Route path="Order" element={<Paypal />}></Route>
         </Route>
         <Route path="/" element={<Main />}></Route>
-        {/* <Route path="Signupform" element={<Signupform />}></Route> */}
+
         <Route path="Login" element={<Loginform />}></Route>
         <Route path="Preview" element={<Preview />}></Route>
         <Route path="Pricing" element={<Pricing2 />}></Route>

@@ -21,7 +21,7 @@ function Sidebar() {
 
             <nav class="sidebar-menu">
               <div style={{ fontSize: "17px" }} id="cname">
-                <p style={{ marginBottom: "1px" }}>{ctx.username}</p>
+                <p style={{ marginBottom: "1px" }}>Hi,{ctx.username}</p>
                 <p style={{ fontSize: "15px" }}>
                   {localStorage.getItem("admin") ? (
                     <b>Admin</b>
