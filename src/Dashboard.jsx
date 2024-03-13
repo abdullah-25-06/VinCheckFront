@@ -86,9 +86,9 @@ function Dashboard() {
 
   return (
     <>
-      <a id="topbutton" onClick={scroll} href=" ">
+      <span id="topbutton" onClick={scroll}>
         {""}
-      </a>
+      </span>
 
       <div className="dashboard">
         <div className="head">

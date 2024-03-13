@@ -47,7 +47,9 @@ function Loginform() {
   var counter = 0;
   return (
     <>
-      <a id="topbutton" onClick={scroll} href=' '>{""}</a>
+      <span id="topbutton" onClick={scroll}>
+        {""}
+      </span>
 
       <div className=" login">
         <div className="navhead">

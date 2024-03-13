@@ -20,7 +20,9 @@ function Pricing2() {
     return (
         <>
         
-        <a id="topbutton" onClick={scroll} href=' '>{""}</a>
+        <span id="topbutton" onClick={scroll}>
+        {""}
+      </span>
              <div className="navhead container">
                 <span className="items col-md-11 mx-auto container" >
 

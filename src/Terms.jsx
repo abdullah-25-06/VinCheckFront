@@ -16,9 +16,9 @@ function Terms() {
 
   return (
     <>
-      <a id="topbutton" onClick={scroll} href=" " >
+      <span id="topbutton" onClick={scroll}>
         {""}
-      </a>
+      </span>
 
       <div className="navhead container">
         <span className="items col-md-11 mx-auto container">
