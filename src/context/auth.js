@@ -17,7 +17,7 @@ export const AuthContextProvider = (props) => {
     setCount(count);
     localStorage.setItem("count", count);
   };
-  const SignUpHandler = async (email, password, phoneno, username,vin) => {
+  const SignUpHandler = async (email, password, phoneno, username, vin) => {
     try {
       const { data } = await axios.post(
         `${process.env.REACT_APP_DEVELOPMENT_URL}/register/`,
@@ -26,7 +26,7 @@ export const AuthContextProvider = (props) => {
           password,
           phoneno,
           username,
-          vin
+          vin,
         },
         {
           headers: {
@@ -68,6 +68,13 @@ export const AuthContextProvider = (props) => {
     }
   };
   const loginHandler = async (email, password) => {
+    localStorage.removeItem("IsloggedIn");
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("count");
+    localStorage.removeItem("admin");
+    setIsLoggedIn(false);
+    setUsername("");
     try {
       const { data } = await axios.post(
         `${process.env.REACT_APP_DEVELOPMENT_URL}/login`,
@@ -82,7 +89,7 @@ export const AuthContextProvider = (props) => {
           },
         }
       );
-      console.log(data);
+
       if (data.isAdmin) localStorage.setItem("admin", data.isAdmin);
       setIsLoggedIn(true);
       setUsername(data.username);
@@ -127,7 +134,7 @@ export const AuthContextProvider = (props) => {
       setCount(count);
     }
   }, [isLoggedIn, username, Mcount]);
-  
+
   const logoutHandler = async () => {
     try {
       const { data } = await axios.post(

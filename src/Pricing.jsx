@@ -1,13 +1,8 @@
 import React, { useContext } from "react";
 import DataContext from "./context/data";
-// import Modal from './Modal'
+// import Modal from "./Modal";
 
 function Pricing() {
-  // const [packages,setpackages]=useState('')
-  const alerts=()=>{
-    alert("Enter VIN to continue for signup!")
-  }
-
   const ctx = useContext(DataContext);
   return (
     <>
@@ -26,10 +21,7 @@ function Pricing() {
                 id="master"
               >
                 <p class="text-center" id="gheading" style={{ color: "white" }}>
-                  {ctx.data.length > 0 ? ctx.data[0].title.toUpperCase() : ""
-                 
-}
-
+                  {ctx.data.length > 0 ? ctx.data[0].title.toUpperCase() : ""}
                 </p>
                 <div class="d-flex align-items-center justify-content-center text-dark mb-3">
                   <span class=""></span>
@@ -57,14 +49,9 @@ function Pricing() {
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   // type="button"
-                  // data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
                   style={{ whiteSpace: "nowrap" }}
-                  onClick={alerts}
-              
-                  
-
-
-                  
                 >
                   Sign Up
                 </a>
@@ -100,9 +87,9 @@ function Pricing() {
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
-                  onClick={alerts}
-                  // type="button"
-                  // data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
                 >
                   Sign Up
                 </a>
@@ -142,9 +129,9 @@ function Pricing() {
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
-                  onClick={alerts}
+                  // onClick={alerts}
                   // type="button"
-                  // data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >
                   Sign Up
                 </a>
@@ -196,9 +183,9 @@ function Pricing() {
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
-                  onClick={alerts}
+                  // onClick={alerts}
                   // type="button"
-                  // data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >
                   Sign Up
                 </a>
@@ -236,9 +223,9 @@ function Pricing() {
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
-                  onClick={alerts}
+                  // onClick={alerts}
                   // type="button"
-                  // data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >
                   Sign Up
                 </a>
@@ -278,9 +265,9 @@ function Pricing() {
                   class="btn-block btn btn-cute-1 mt-4"
                   id="goldbtn"
                   style={{ whiteSpace: "nowrap" }}
-                  onClick={alerts}
+                  // onClick={alerts}
                   // type="button"
-                  // data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >
                   Sign Up
                 </a>

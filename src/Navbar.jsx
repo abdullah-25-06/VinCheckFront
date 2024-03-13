@@ -106,7 +106,7 @@ function Navbar() {
               </a>
               <a className="nav-link" href="/pricing">
                 <li id="li">
-                  <img src="p.png" alt="" /> Prices
+                  <img src="p.png" alt="" /> Pricing
                 </li>
               </a>
               <a className="nav-link" to="Login" href="Login">

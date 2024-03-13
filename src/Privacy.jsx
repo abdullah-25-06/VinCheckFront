@@ -52,7 +52,7 @@ function Delivery() {
           </li>
           <li className="nav-item navbar-nav mt-1">
             <NavLink className="nav-link" id="home2" to="/pricing" style={{color:'black'}}>
-              Prices
+              Pricing
             </NavLink>
           </li>
           <li className="nav-item navbar-nav mt-1">

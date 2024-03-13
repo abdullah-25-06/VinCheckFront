@@ -4,12 +4,13 @@ import AuthContext from "./context/auth";
 import Typed from "typed.js";
 import axios from "axios";
 import DataContext from "./context/data";
+import Modal from "./Modal";
 function Preview() {
   const navigate = useNavigate();
   const d_ctx = useContext(DataContext);
   const [selectPackage, setSelectPackage] = useState(null);
   const ctx = useContext(AuthContext);
-  const [detail] = useState(ctx.isLoggedIn ? true : false);
+  const [detail, setDetail] = useState(ctx.isLoggedIn ? true : false);
   const email = useRef();
   const name = useRef();
   const phone = useRef();
@@ -17,6 +18,8 @@ function Preview() {
   const vin_data = useRef();
   const [car, setCar] = useState();
   var counter1 = 0;
+  
+  
   const selectHandler = (e) => {
     if (0 <= e.target.value <= d_ctx.data.length - 1) {
       setSelectPackage(d_ctx.data[e.target.value]);
@@ -27,10 +30,11 @@ function Preview() {
   }
   useEffect(() => {
     setSelectPackage(d_ctx.data[0]);
+    setDetail(ctx.isLoggedIn ? true : false);
     if (localStorage.getItem("car_D") && !car) {
       setCar(JSON.parse(localStorage.getItem("car_D")));
     }
-  }, [d_ctx, car, detail]);
+  }, [d_ctx, ctx, car, detail]);
   const data = d_ctx?.data.map((data, index) => {
     return (
       <option value={index} key={index}>
@@ -138,7 +142,6 @@ function Preview() {
   }, [detail]);
 
   const btnHandler = async () => {
-
     if (counter < 0) {
       counter++;
     } else {
@@ -180,13 +183,11 @@ function Preview() {
     navigate("/dashboard");
   };
   const scroll = () => {
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   var counter = 0;
+
   return (
     <React.Fragment>
       <span id="topbutton" onClick={scroll}>
@@ -247,16 +248,20 @@ function Preview() {
               <div>
                 <div data-mdb-input-init class="form-outline mb-3">
                   <label class="form-label" for="form4Example1">
-                    Packages
-                    <img src="select.png" alt="" style={{marginLeft:'3px'}} />
+                    Packages (Select you package below)
+                    <img
+                      src="select.png"
+                      alt=""
+                      style={{ marginLeft: "3px" }}
+                    />
                   </label>
                   <select
                     class="form-control"
                     name="package"
                     onChange={selectHandler}
                     required
-                    style={{ width: '300px' }}
-                    >
+                    style={{ width: "300px" }}
+                  >
                     {/* <img src="select.png"></img> */}
                     {data}
                   </select>
@@ -350,10 +355,8 @@ function Preview() {
               </div>
               <div data-mdb-input-init class="form-outline mb-2">
                 <label class="form-label" for="form4Example1">
-
-                  Packages
-                  
-                  <img src="select.png" alt="" style={{marginLeft:'3px'}} />
+                  Packages (Select your package below)
+                  <img src="select.png" alt="" style={{ marginLeft: "3px" }} />
                 </label>
                 <select
                   class="form-control"
@@ -394,6 +397,7 @@ function Preview() {
           </div>
         )}
       </div>
+      <Modal />
     </React.Fragment>
   );
 }
