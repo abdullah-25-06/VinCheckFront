@@ -17,6 +17,7 @@ function Dpage1(props) {
   // const [setQuery] = useState("");
   const [isData, setIsData] = useState(null);
   const [transaction, SetTransactions] = useState(null);
+  const [allData, setAllData] = useState(null);
   const inp = useRef("");
   // const selectHandler = (e) => {
   //   if (0 <= e.target.value <= d_ctx.data.length - 1) {
@@ -39,6 +40,7 @@ function Dpage1(props) {
         });
 
         setDataArray(getreports);
+        setAllData(getreports);
         if (getreports && getreports.length > 0) {
           setIsData(true);
         } else {
@@ -140,7 +142,7 @@ function Dpage1(props) {
   );
 
   const row =
-    dataArray.length >= 1
+    dataArray?.length >= 1
       ? dataArray?.map((elem, index) => {
           return (
             <tr key={index}>
@@ -173,6 +175,7 @@ function Dpage1(props) {
                   Submit
                   <button
                     class="btn btn-success mt-2"
+                    id="checkBtn"
                     style={{ fontSize: "13px" }}
                     onClick={() => {
                       checkHandler(index);
@@ -221,8 +224,11 @@ function Dpage1(props) {
       alert(err.response.data.error);
     }
   };
+
   const checkHandler = async (index) => {
     try {
+      document.getElementById("checkBtn").disabled = true;
+
       const dataSample = dataArray[index];
       await axios.put(
         `${process.env.REACT_APP_DEVELOPMENT_URL}/vindata${dataSample._id}`,
@@ -239,8 +245,11 @@ function Dpage1(props) {
       // setDataArray((prevPosts) =>
       //   prevPosts.filter((post) => post._id !== dataSample._id)
       // );
+      document.getElementById("checkBtn").disabled = false;
+      return alert("Report Submitted successfully");
     } catch (err) {
-      alert(err.message);
+      document.getElementById("checkBtn").disabled = false;
+      return alert(err.message);
     }
   };
   const pendingHandler = async () => {
@@ -257,6 +266,7 @@ function Dpage1(props) {
         }
       );
       setDataArray(data.getreports);
+      setAllData(data.getreports);
     } catch (err) {
       console.log(err);
       alert(err.message);
@@ -276,6 +286,7 @@ function Dpage1(props) {
         }
       );
       setDataArray(data.getreports);
+      setAllData(data.getreports);
     } catch (err) {
       console.log(err);
       alert(err.message);
@@ -296,6 +307,7 @@ function Dpage1(props) {
         }
       );
       setDataArray(data.getreports);
+      setAllData(data.getreports);
     } catch (err) {
       console.log(err);
       alert(err.message);
@@ -329,6 +341,13 @@ function Dpage1(props) {
   const scroll = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  const SeacrhHandler = (e) => {
+    const data = allData.filter((data) =>
+      data.vin?.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+
+    setDataArray(data);
+  };
 
   return (
     <>
@@ -360,7 +379,6 @@ function Dpage1(props) {
                     marginBottom: "15px",
                   }}
                 />
-                
               </NavLink>
             </div>
             <a
@@ -519,12 +537,13 @@ function Dpage1(props) {
                         textAlign: "end",
                       }}
                     >
-                      Total Reports:{dataArray.length}
+                      Total Reports:{dataArray?.length}
                     </p>
                     <input
                       type="search"
                       placeholder=" Search VIN..."
                       id="tsearch"
+                      onChange={SeacrhHandler}
                     />
                   </div>
                 </div>
