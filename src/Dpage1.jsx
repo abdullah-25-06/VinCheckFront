@@ -360,16 +360,7 @@ function Dpage1(props) {
                     marginBottom: "15px",
                   }}
                 />
-                <img
-                  src="glogo.png"
-                  alt=""
-                  id="wlogo"
-                  style={{
-                    marginLeft: "10px",
-                    width: "180px",
-                    marginBottom: "15px",
-                  }}
-                />
+                
               </NavLink>
             </div>
             <a
