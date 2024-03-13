@@ -2,7 +2,7 @@ import { React, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "./context/auth";
 
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -20,10 +20,16 @@ function Sidebar() {
             <header class="sidebar-header"></header>
 
             <nav class="sidebar-menu">
-              <div style={{ fontSize: "17px"}} id="cname"  >
-                <p style={{marginBottom:'1px'}}>{ctx.username}</p>
-                <p style={{ fontSize: "15px"}}><b>Client</b></p>
-                </div>
+              <div style={{ fontSize: "17px" }} id="cname">
+                <p style={{ marginBottom: "1px" }}>{ctx.username}</p>
+                <p style={{ fontSize: "15px" }}>
+                  {localStorage.getItem("admin") ? (
+                    <b>Admin</b>
+                  ) : (
+                    <b>Client</b>
+                  )}
+                </p>
+              </div>
               <hr />
 
               <p
@@ -41,13 +47,19 @@ function Sidebar() {
                 Get Help
               </p>
               <button type="button" id="sbutton">
-                <img src="chat.png" alt='pic' />
-                <a className="nav-link" href="https://tawk.to/chat/65cbbfd80ff6374032cd1d4c/1hmhuapn4" target="_blank"  rel="noreferrer"  style={{textDecoration:'none'}}>
+                <img src="chat.png" alt="pic" />
+                <a
+                  className="nav-link"
+                  href="https://tawk.to/chat/65cbbfd80ff6374032cd1d4c/1hmhuapn4"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ textDecoration: "none" }}
+                >
                   <span id="spam">Live Chat</span>
                 </a>
               </button>
               <button type="button" id="sbutton">
-                <img src="efund.png" alt='pic' />
+                <img src="efund.png" alt="pic" />
                 <NavLink className="nav-link" to="/Request">
                   <span id="spam">Request Refund</span>
                 </NavLink>
@@ -63,13 +75,13 @@ function Sidebar() {
                 Authentication
               </p>
               <button type="button" id="sbutton">
-                <img src="use.png" alt='pic'/>
+                <img src="use.png" alt="pic" />
                 <NavLink className="nav-link" to="/Profile">
                   <span id="spam">Profile</span>
                 </NavLink>
               </button>
               <button type="button" id="sbutton" onClick={signOutHandler}>
-                <img src="signout.png" alt='pic'/>
+                <img src="signout.png" alt="pic" />
 
                 <NavLink className="nav-link" to="/">
                   <span id="spam">Sign Out</span>
@@ -84,4 +96,3 @@ function Sidebar() {
 }
 
 export default Sidebar;
-

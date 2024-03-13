@@ -2406,6 +2406,11 @@ body.open .sidebar {
   /* opacity: 0; */
   /* visibility: hidden; */
   z-index: 1000;
+
+  transform: rotateY(50px);
+  filter: blur(20px);
+  opacity: 0;
+  animation: showContent 0.3s 0.5s linear 1 forwards;
 }
 #topbutton::after {
   content: "\f077";
